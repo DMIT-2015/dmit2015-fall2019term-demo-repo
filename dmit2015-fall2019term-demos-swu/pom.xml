@@ -4,7 +4,7 @@
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ca.nait</groupId>
-	<artifactId>dmit2015-fall2019term-demos-swu</artifactId>
+	<artifactId>dmit2015-fall2019term-instructor-demos</artifactId>
 	<version>2019.09.09</version>
 	<packaging>war</packaging>
 
@@ -69,7 +69,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>dmit2015-fall2019term-demos-swu</finalName>
+		<finalName>dmit2015-fall2019term-instructor-demos</finalName>
 	</build>
 
 </project>
