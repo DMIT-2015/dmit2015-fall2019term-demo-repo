@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"ca.nait.dmit.domain","c":"ChineseZodiac","l":"animal(int)"},{"p":"ca.nait.dmit.domain","c":"ChineseZodiac","l":"ChineseZodiac()","url":"%3Cinit%3E()"}]
