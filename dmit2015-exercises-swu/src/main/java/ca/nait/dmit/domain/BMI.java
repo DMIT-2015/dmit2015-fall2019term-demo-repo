@@ -1,5 +1,7 @@
 package ca.nait.dmit.domain;
 
+import org.apache.commons.math3.util.Precision;
+
 /**
  * This class is use to calculate a person's body mass index (BMI) and their BMI Category.
  * @author Sam Wu
@@ -17,7 +19,7 @@ public class BMI {
 	 * @return the body mass index (BMI) value of the person
 	 */
 	public double bmi() {
-		return 703 * weight / Math.pow(height, 2);
+		return Precision.round( 703 * weight / Math.pow(height, 2), 1);
 	}
 	
 	/**
