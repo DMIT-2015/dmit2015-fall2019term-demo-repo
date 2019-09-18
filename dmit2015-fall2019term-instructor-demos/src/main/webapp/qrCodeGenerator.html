@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>QR Code Generator</title>
+</head>
+<body>
+
+	<h1>QR Code Generator</h1>
+	<form method="post" action="QrCodeGeneratorServlet">
+		<label for="url">Website URL:</label>
+		<input type="text" id="url" name="url" size="100" />
+		<br />
+		<input type="checkbox" id="download" name="download"> Download File <br />
+	
+		<input type="submit" value="Submit">
+	</form>
+	
+	<img src="QrCodeGeneratorServlet?url=github.com" width="128" height="128"/>GITHUB <br />
+	<img src="QrCodeGeneratorServlet?url=wildfly.com" />Wildfly <br />
+	<img src="QrCodeGeneratorServlet?url=moodle.nait.ca" />Moodle <br />
+	
+</body>
+</html>
