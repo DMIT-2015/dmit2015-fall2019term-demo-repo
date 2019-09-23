@@ -6,6 +6,8 @@ import java.io.PrintWriter;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,22 +44,27 @@ public class LoanOutputJSONServlet extends HttpServlet {
 		response.setContentType("application/json;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 
-		JsonArrayBuilder loanScheduleBuilder = Json.createArrayBuilder();
-		for (LoanSchedule currentLoanSchedule : currentLoan.loanScheduleTable()) {
-			JsonObject loanScheduleJson = Json.createObjectBuilder()
-					.add("paymentNumber", currentLoanSchedule.getPaymentNumber())
-					.add("interestPaid", currentLoanSchedule.getInterestPaid())
-					.add("principalPaid", currentLoanSchedule.getPrincipalPaid())
-					.add("remainingBalance", currentLoanSchedule.getRemainingBalance())
-					.build();		
-			loanScheduleBuilder.add(loanScheduleJson);
-		}
-		JsonObject resultJson = Json.createObjectBuilder()
-				.add("monthlyPayment", currentLoan.monthlyPayment())
-				.add("loanSchedules", loanScheduleBuilder)
-				.build();
+//		JsonArrayBuilder loanScheduleBuilder = Json.createArrayBuilder();
+//		for (LoanSchedule currentLoanSchedule : currentLoan.loanScheduleTable()) {
+//			JsonObject loanScheduleJson = Json.createObjectBuilder()
+//					.add("paymentNumber", currentLoanSchedule.getPaymentNumber())
+//					.add("interestPaid", currentLoanSchedule.getInterestPaid())
+//					.add("principalPaid", currentLoanSchedule.getPrincipalPaid())
+//					.add("remainingBalance", currentLoanSchedule.getRemainingBalance())
+//					.build();		
+//			loanScheduleBuilder.add(loanScheduleJson);
+//		}
+//		JsonObject resultJson = Json.createObjectBuilder()
+//				.add("monthlyPayment", currentLoan.monthlyPayment())
+//				.add("loanSchedules", loanScheduleBuilder)
+//				.build();
+//		
+//		out.println(resultJson.toString());
 		
-		out.println(resultJson.toString());
+		Jsonb jsonb = JsonbBuilder.create();
+		String resultJson = jsonb.toJson(currentLoan);
+		out.println(resultJson);	
+		
 		out.close();
 		
 	}
