@@ -32,8 +32,8 @@ public class BmiServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String weightString = request.getParameter("weight");
 		String heigtString = request.getParameter("height");
-		if (weightString != null && !weightString.isBlank() 
-				&& heigtString != null && !heigtString.isBlank()) {
+		if (weightString != null && !weightString.isEmpty() 
+				&& heigtString != null && !heigtString.isEmpty()) {
 			int weight = Integer.parseInt(weightString);
 			int height = Integer.parseInt(heigtString);
 			BMI bmiBean = new BMI();
