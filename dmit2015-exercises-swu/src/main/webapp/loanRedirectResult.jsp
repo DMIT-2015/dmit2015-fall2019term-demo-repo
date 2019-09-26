@@ -27,6 +27,12 @@
 			<h1>Mortgage Calculator Results</h1>
 		</div>
 		
+		<c:if test="${errorMessage != null}">
+			<div class="error">
+				<h3>${errorMessage}</h3>
+			</div>
+		</c:if>
+		
 		<c:if test="${currentLoan != null}">
 			<div class="alert alert-info" role="alert">
 				The monthly payment amount is

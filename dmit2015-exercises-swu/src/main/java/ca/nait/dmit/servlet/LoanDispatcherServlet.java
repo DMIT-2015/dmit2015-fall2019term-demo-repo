@@ -25,18 +25,22 @@ public class LoanDispatcherServlet extends HttpServlet {
 		String interestRateString = request.getParameter("interestRate");
 		String periodString = request.getParameter("period");
 		
-		double amount = Double.parseDouble(amountString);
-		double interestRate = Double.parseDouble(interestRateString);
-		int period = Integer.parseInt(periodString);
-		
-		Loan currentLoan = new Loan();
-		currentLoan.setMortgageAmount(amount);
-		currentLoan.setAnnualInterestRate(interestRate);
-		currentLoan.setAmortizationPeriod(period);
+		if (amountString == null || amountString.isBlank()) {
+			request.setAttribute("errorMessage", "Amount parameter value is required.");
+		} else {
+			double amount = Double.parseDouble(amountString);
+			double interestRate = Double.parseDouble(interestRateString);
+			int period = Integer.parseInt(periodString);
+			
+			Loan currentLoan = new Loan();
+			currentLoan.setMortgageAmount(amount);
+			currentLoan.setAnnualInterestRate(interestRate);
+			currentLoan.setAmortizationPeriod(period);
 
-		request.setAttribute("currentLoan", currentLoan);
+			request.setAttribute("currentLoan", currentLoan);			
+		}
 		getServletContext()
-			.getRequestDispatcher("/loanDispatcherResult.jsp")
+			.getRequestDispatcher("/mortageCalculator.jsp")
 			.forward(request, response);
 		
 	}

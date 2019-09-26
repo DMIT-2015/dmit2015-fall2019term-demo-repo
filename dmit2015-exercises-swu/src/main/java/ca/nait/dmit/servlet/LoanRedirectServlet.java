@@ -25,21 +25,26 @@ public class LoanRedirectServlet extends HttpServlet {
 		String interestRateString = request.getParameter("interestRate");
 		String periodString = request.getParameter("period");
 		
-		double amount = Double.parseDouble(amountString);
-		double interestRate = Double.parseDouble(interestRateString);
-		int period = Integer.parseInt(periodString);
-		
-		Loan currentLoan = new Loan();
-		currentLoan.setMortgageAmount(amount);
-		currentLoan.setAnnualInterestRate(interestRate);
-		currentLoan.setAmortizationPeriod(period);
-
 		HttpSession session = request.getSession();
-		session.setAttribute("currentLoan", currentLoan);
+		if (amountString == null || amountString.isBlank()) {
+			session.setAttribute("errorMessage", "Amount parameter value is required.");
+		} else {
+			double amount = Double.parseDouble(amountString);
+			double interestRate = Double.parseDouble(interestRateString);
+			int period = Integer.parseInt(periodString);
+			
+			Loan currentLoan = new Loan();
+			currentLoan.setMortgageAmount(amount);
+			currentLoan.setAnnualInterestRate(interestRate);
+			currentLoan.setAmortizationPeriod(period);
+
+			session.setAttribute("currentLoan", currentLoan);
+			
+		}
 		response.sendRedirect(
 				request.getContextPath() 
 				+
-				"/loanRedirectResult.jsp");
+				"/mortageCalculator.jsp");
 		
 	}
 
