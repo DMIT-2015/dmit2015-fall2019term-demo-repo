@@ -40,7 +40,7 @@ public class LoanDispatcherServlet extends HttpServlet {
 			request.setAttribute("currentLoan", currentLoan);			
 		}
 		getServletContext()
-			.getRequestDispatcher("/mortageCalculator.jsp")
+			.getRequestDispatcher("/loan.jsp")
 			.forward(request, response);
 		
 	}

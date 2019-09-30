@@ -1,0 +1,16 @@
+Region Abbreviation,Region Name,Tax Year,Surtax Rates,Surtax Thresholds
+ON,Ontario,2019,0.20,4740
+ON,Ontario,2019,0.36,6067
+PE,Prince Edward Island,2019,0.10,12500
+ON,Ontario,2018,0.20,4638
+ON,Ontario,2018,0.36,5936
+PE,Prince Edward Island,2018,0.10,12500
+ON,Ontario,2017,0.20,4556
+ON,Ontario,2017,0.36,5831
+PE,Prince Edward Island,2017,0.10,12500
+ON,Ontario,2016,0.20,4484
+ON,Ontario,2016,0.36,5739
+PE,Prince Edward Island,2016,0.10,12500
+ON,Ontario,2015,0.20,4418
+ON,Ontario,2015,0.36,5654
+PE,Prince Edward Island,2015,0.10,12500

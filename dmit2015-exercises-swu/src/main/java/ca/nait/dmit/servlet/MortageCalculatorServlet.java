@@ -14,7 +14,7 @@ import ca.nait.dmit.domain.Loan;
  * Servlet implementation class LoanRedirectServlet
  */
 @WebServlet("/LoanRedirectServlet")
-public class LoanRedirectServlet extends HttpServlet {
+public class MortageCalculatorServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -44,7 +44,7 @@ public class LoanRedirectServlet extends HttpServlet {
 		response.sendRedirect(
 				request.getContextPath() 
 				+
-				"/loan.jsp");
+				"/mortgageCalculator.jsp");
 		
 	}
 
