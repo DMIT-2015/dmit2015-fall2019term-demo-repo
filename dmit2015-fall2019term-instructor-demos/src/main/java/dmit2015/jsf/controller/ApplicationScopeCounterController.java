@@ -17,7 +17,7 @@ public class ApplicationScopeCounterController {
 	
 	public void submit() {
 		requestCounter++;
-		Messages.addGlobalInfo("Request counter value is {0}", requestCounter);
+		Messages.addGlobalInfo("ApplicationScoped counter value is {0}", requestCounter);
 	}
 
 }

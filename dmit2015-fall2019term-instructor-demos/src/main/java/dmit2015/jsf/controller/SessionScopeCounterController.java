@@ -20,7 +20,7 @@ public class SessionScopeCounterController implements Serializable {
 	
 	public void submit() {
 		requestCounter++;
-		Messages.addGlobalInfo("Request counter value is {0}", requestCounter);
+		Messages.addGlobalInfo("SessionScoped counter value is {0}", requestCounter);
 	}
 
 }

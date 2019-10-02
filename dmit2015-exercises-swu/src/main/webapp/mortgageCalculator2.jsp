@@ -29,7 +29,7 @@ if (request.getMethod().equalsIgnoreCase("POST") ) {
 	String interestRateString = request.getParameter("interestRate");
 	String periodString = request.getParameter("period");
 
-	if (amountString == null || amountString.isBlank()) {
+	if (amountString == null || amountString.isEmpty()) {
 		session.setAttribute("errorMessage", "Amount parameter value is required.");
 	} else {
 		double amount = Double.parseDouble(amountString);

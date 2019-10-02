@@ -19,7 +19,7 @@ public class ViewScopeCounterController implements Serializable  {
 	
 	public void submit() {
 		requestCounter++;
-		Messages.addGlobalInfo("Request counter value is {0}", requestCounter);
+		Messages.addGlobalInfo("ViewScoped counter value is {0}", requestCounter);
 	}
 
 }

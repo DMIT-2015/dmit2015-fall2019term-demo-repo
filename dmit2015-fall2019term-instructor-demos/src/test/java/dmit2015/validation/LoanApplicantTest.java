@@ -24,8 +24,7 @@ public class LoanApplicantTest {
 	public void testSetFirstName() {
 		Set<ConstraintViolation<LoanApplicant>> violations = validator.validateValue(
 				LoanApplicant.class, "firstName", "");
-		assertEquals(2, violations.size());
-		
+		assertEquals(2, violations.size());		
 	}
 
 }
