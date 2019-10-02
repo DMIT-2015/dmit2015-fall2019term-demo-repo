@@ -1,8 +1,11 @@
 package dmit2015.demo03;
 
+import javax.validation.constraints.Positive;
+
 public class Circle {
 	
 	/** The radius of this circle */
+	@Positive(message = "Radius must be a positive value")
 	private double radius = 1;
 
 	public double getRadius() {

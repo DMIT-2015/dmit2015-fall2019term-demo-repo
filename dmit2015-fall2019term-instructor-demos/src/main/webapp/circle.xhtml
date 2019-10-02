@@ -19,11 +19,25 @@
     	<meta charset="utf-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
         
-        <title>Hello World</title>        
+        <title>Circle Calculator</title>        
     </h:head>
 
 	<h:body>
-		<h1>Hello World</h1>
+		<b:jumbotron><h1>Circle Calculator</h1></b:jumbotron>
+		
+		<b:messages id="messages"></b:messages>
+		
+		<b:form>
+			<b:inputText id="radius" 
+				value="#{circleController.currentCircle.radius}"
+				label="Radius: " 
+				placeholder="enter radius of circle"></b:inputText>
+			<b:commandButton value="Calculate" 
+				action="#{circleController.submit()}"
+				ajax="true" update="messages"
+				look="primary" 
+				icon-awesome="circle"></b:commandButton>
+		</b:form>
 
 
 	</h:body>
