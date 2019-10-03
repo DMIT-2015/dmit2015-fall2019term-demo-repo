@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:hf="http://highfaces.org"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
+        
+        <title>Chinese Zodiac</title>        
+    </h:head>
+
+	<h:body>
+		<h1>Chinese Zodiac</h1>
+		
+		<b:messages id="messages" />
+		
+		<p:graphicImage id="animalImage" 
+			value="#{chineseZodiacController.animalImageUrl}">
+		</p:graphicImage>
+
+		<b:form>
+			<b:inputText id="year" label="Birth Year"
+			value="#{chineseZodiacController.currentChineseZodiac.birthYear}">
+			</b:inputText>			
+			<b:commandButton value="Get Animal"
+				ajax="true" update="messages animalImage"
+				action="#{chineseZodiacController.submit()}">
+			</b:commandButton>
+			<b:touchSpin id="yearSpin" min="1950" max="2025" step="1"
+	value="#{chineseZodiacController.currentChineseZodiac.birthYear}">
+	
+			</b:touchSpin>
+		</b:form>
+
+	</h:body>
+
+</html>

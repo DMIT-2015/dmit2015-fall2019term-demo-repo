@@ -1,8 +1,13 @@
 package ca.nait.dmit.domain;
 
+import javax.validation.constraints.Positive;
+
 public class Rectangle {
 
+	@Positive(message = "Width must be a positive number")
 	private double width;
+	
+	@Positive(message = "Length must be a positive number")
 	private double length;
 	
 	public double area() {
