@@ -18,25 +18,19 @@
     	<meta charset="utf-8" />
     	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
         
-        <title>Chinese Zodiac</title>        
+        <title>Baby Name Ranking</title>        
     </h:head>
 
 	<h:body>
-		<h1>Chinese Zodiac</h1>
-		
-		<b:messages id="messages" />
-		
-		<p:graphicImage id="animalImage" 
-			value="#{chineseZodiacController.animalImageUrl}">
-		</p:graphicImage>
+		<h1>Baby Name Ranking</h1>
 
-		<b:form>
-			<b:touchSpin id="yearSpin" min="1950" max="2025" step="1"
-				onchange="console.log('year changed');ajax:chineseZodiacController.submit()"
-				update=":messages animalImage"
-				value="#{chineseZodiacController.currentChineseZodiac.birthYear}">	
-			</b:touchSpin>
-		</b:form>
+		<b:messages id="messages"></b:messages>
+		
+		<b:dataTable value="#{babyNamesController.names}" var="item">
+			<b:dataTableColumn value="#{item.name}"></b:dataTableColumn>
+			<b:dataTableColumn value="#{item.gender}"></b:dataTableColumn>
+			<b:dataTableColumn value="#{item.nameCount}"></b:dataTableColumn>
+		</b:dataTable>
 
 	</h:body>
 

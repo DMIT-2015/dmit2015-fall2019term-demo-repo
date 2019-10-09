@@ -13,7 +13,7 @@ public class FederalTaxParser {
 	
 	public void run() throws IOException {
 		CsvMapper mapper = new CsvMapper();
-		CsvSchema schema = CsvSchema.emptySchema().withHeader();
+		CsvSchema schema = CsvSchema.emptySchema().withoutHeader();
 		MappingIterator<FederalTaxBracket> iter = mapper
 				.readerFor(FederalTaxBracket.class)
 				.with(schema)
