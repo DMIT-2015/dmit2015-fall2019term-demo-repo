@@ -31,13 +31,11 @@
 		</p:graphicImage>
 
 		<b:form>
-			<b:inputText id="year" label="Birth Year"
-			value="#{chineseZodiacController.currentChineseZodiac.birthYear}">
-			</b:inputText>			
-			<b:commandButton value="Get Animal"
-				ajax="true" update="messages animalImage"
-				action="#{chineseZodiacController.submit()}">
-			</b:commandButton>
+			<b:touchSpin id="yearSpin" min="1950" max="2025" step="1"
+				onchange="ajax:chineseZodiacController.submit()"
+				update=":messages animalImage"
+				value="#{chineseZodiacController.currentChineseZodiac.birthYear}">	
+			</b:touchSpin>
 		</b:form>
 
 	</h:body>
