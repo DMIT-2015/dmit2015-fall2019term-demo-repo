@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:hf="http://highfaces.org"
+>
+    <h:head>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
+        
+        <title>Mortgage Calculator</title>        
+    </h:head>
+
+	<h:body>
+		<b:container>
+			<b:jumbotron><h1>Mortgage Calculator</h1></b:jumbotron>
+		
+			<b:messages id="messages"></b:messages>		
+			
+			<b:form>
+				<b:inputText id="mortgageAmount"
+					label="Mortgage Amount"
+					value="#{loanController.currentLoan.mortgageAmount}" />
+					
+				<b:inputText id="annualInterestRate"
+					label="Annual Interest Rate (as percentage of 100)" 
+					value="#{loanController.currentLoan.annualInterestRate}"/>
+					
+				<b:slider id="period" 
+					label="Amortization Period in years"
+					min="0" 
+					max="25" 
+					value="#{loanController.currentLoan.amortizationPeriod}" />
+					
+				<b:commandButton value="Calculate"
+					look="primary"
+					action="#{loanController.calculate}"
+					update="messages table">
+				</b:commandButton>
+					
+			</b:form>
+			
+			<br />
+			<b:dataTable id="table" 
+				value="#{loanController.currentLoan.loanScheduleTable()}" 
+				var="schedule">
+				<b:dataTableColumn label="PaymentNo" 
+					styleClass="text-center"
+					value="#{schedule.paymentNumber}"
+					/>
+				<b:dataTableColumn label="Interest Paid" 
+					styleClass="text-right" 
+					value="#{of:formatCurrency(schedule.interestPaid,'$')}"/>
+				<b:dataTableColumn label="Principal Paid" 
+					styleClass="text-right"
+					value="#{of:formatCurrency(schedule.principalPaid,'$')}" />
+				<b:dataTableColumn label="Remaining Balance" 
+					styleClass="text-right">
+					<h:outputText value="#{schedule.remainingBalance}">
+						<f:convertNumber type="currency" />
+					</h:outputText>
+				</b:dataTableColumn>				
+			</b:dataTable>			
+
+		</b:container>
+
+
+	</h:body>
+
+</html>
