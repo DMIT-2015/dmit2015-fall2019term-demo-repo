@@ -2,53 +2,55 @@ package dmit2015.csv;
 
 import static org.junit.Assert.*;
 
-import java.io.IOException;
-import java.util.Comparator;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.fasterxml.jackson.databind.MappingIterator;
-import com.fasterxml.jackson.dataformat.csv.CsvMapper;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema;
-import com.fasterxml.jackson.dataformat.csv.CsvSchema.ColumnType;
-
 public class ScheduledPhotoEnforcementZoneDetailCsvParserTest {
 
+	static ScheduledPhotoEnforcementZoneDetailManager zoneManager;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
+		zoneManager = new ScheduledPhotoEnforcementZoneDetailManager();
+	}
+	
+	@Test
+	public void shouldOrderBySpeedLimit() {
+		// Print the road name, location description, and speed limit
+		System.out.println("Scheduled Photo Enforcement Zones by Speed Limit");
+		String header = String.format("|%-25s|%-50s|%10s", "Road Name","Location Description","Speed Limit");
+		System.out.println(header);
+		zoneManager.getZonesOrderBySpeedLimit().forEach( instance -> {
+			String message = String.format("|%-25s|%-50s|%10d", instance.getRoadName(), instance.getLocationDescription(), instance.getSpeedLimit());
+			System.out.println(message);
+		});
 	}
 
 	@Test
-	public void testGetRoadName() throws IOException {
-		CsvMapper mapper = new CsvMapper();
-		CsvSchema schema = CsvSchema.emptySchema().withHeader();
-		MappingIterator<ScheduledPhotoEnforcementZoneDetail> iter = mapper
-				.readerFor(ScheduledPhotoEnforcementZoneDetail.class)
-				.with(schema)
-				.readValues(getClass().getResourceAsStream("/Scheduled_Photo_Enforcement_Zone_Details.csv"));
-		List<ScheduledPhotoEnforcementZoneDetail> zones = iter.readAll();
-		assertEquals(198, zones.size());
+	public void shouldOrderBySpeedLimitDescending() {
+		// Print the road name, location description, and speed limit
+		System.out.println("Scheduled Photo Enforcement Zones by descending Speed Limit");
+		String header = String.format("|%-25s|%-50s|%10s", "Road Name","Location Description","Speed Limit");
+		System.out.println(header);
+		zoneManager.getZonesOrderBySpeedLimitDescending().forEach( instance -> {
+			String message = String.format("|%-25s|%-50s|%10d", instance.getRoadName(), instance.getLocationDescription(), instance.getSpeedLimit());
+			System.out.println(message);
+		});
+	}
 
-		// Print each object in the collection to the Console
-//		zones.forEach(System.out::println);
-		
-		// Sort the list ascending by the speed limit
-		Comparator<ScheduledPhotoEnforcementZoneDetail> speedLimitAscendingComparator =
-			(lhs, rhs) -> lhs.getSpeedLimit() - rhs.getSpeedLimit();
-		List<ScheduledPhotoEnforcementZoneDetail> sortedAscendingZones
-			= zones.stream().sorted(speedLimitAscendingComparator).collect(Collectors.toList());
-		sortedAscendingZones.forEach(System.out::println);
+	@Test
+	public void shouldFindDistinctSpeedLimit() {
+		assertEquals(8, zoneManager.getDistinctSpeedLimits().size());
+	}
 
-		// Sort the list descending by the speed limit
-		Comparator<ScheduledPhotoEnforcementZoneDetail> speedLimitDecendingComparator =
-				(lhs, rhs) -> rhs.getSpeedLimit() - lhs.getSpeedLimit();
-		List<ScheduledPhotoEnforcementZoneDetail> sortedDecendingZones
-				= zones.stream().sorted(speedLimitDecendingComparator).collect(Collectors.toList());
-		sortedDecendingZones.forEach(System.out::println);
+	@Test
+	public void shouldFindZonesBySpeedLimit() {
+		assertEquals(69, zoneManager.getZonesBySpeedLimit(30).size());
+		assertEquals(77, zoneManager.getZonesBySpeedLimit(50).size());
+		assertEquals(22, zoneManager.getZonesBySpeedLimit(60).size());
+		assertEquals(6, zoneManager.getZonesBySpeedLimit(80).size());
+		assertEquals(17, zoneManager.getZonesBySpeedLimit(100).size());
+
 	}
 
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	xmlns:hf="http://highfaces.org"
+>
+    <h:head>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
+        
+        <title>Scheduled Photo Enforcement Zones</title>        
+    </h:head>
+
+	<h:body>
+		<b:container>
+			<b:jumbotron>
+				<h1>Scheduled Photo Enforcement Zones</h1>
+			</b:jumbotron>
+			
+			<b:messages id="messages"></b:messages>
+
+			<b:dataTable value="#{viewScheduledPhotoEnforcementZoneController.zones}" var="item"
+				paginated="false"
+				searching="false"
+			>
+				<b:dataTableColumn label="Road Name" value="#{item.roadName}" />
+
+				<b:dataTableColumn label="Location Description" value="#{item.locationDescription}" />
+
+				<b:dataTableColumn label="From Point" value="#{item.fromPoint}" />
+
+				<b:dataTableColumn label="To Point" value="#{item.toPoint}" />
+				
+				<b:dataTableColumn label="Speed Limit" value="#{item.speedLimit}" style-class="text-right"/>
+				
+			</b:dataTable>			
+
+		</b:container>
+
+
+	</h:body>
+
+</html>
