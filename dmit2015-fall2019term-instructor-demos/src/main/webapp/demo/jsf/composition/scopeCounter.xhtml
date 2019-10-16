@@ -1,0 +1,127 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-template.xhtml">
+	
+	<ui:param name="title" value="JSF Backing Bean Class Scope Counter" />
+	
+	<ui:define name="externalstyles">
+	
+	</ui:define>
+	
+	<ui:define name="internalstyles">
+	
+	</ui:define>
+	
+	<ui:define name="headscripts">
+		
+	</ui:define>
+
+	
+	<ui:define name="maincontent">
+
+		<b:jumbotron><h1>JSF Backing Bean Class Scope Counter</h1></b:jumbotron>
+		
+		<h:messages id="jsfmessages" />
+		<b:messages id="bootsfacesmessages" />
+		<p:messages id="primefacesmessages" />
+		
+		<h:outputText id="requestCounterValue" value="RequestScoped Counter: #{requestScopeCounterController.requestCounter}" />
+		<br />
+		<h:outputText id="viewCounterValue" value="ViewScoped Counter: #{viewScopeCounterController.requestCounter}" />
+		<br />
+		<h:outputText id="sessionCounterValue" value="SessionScoped Counter: #{sessionScopeCounterController.requestCounter}" />
+		<br />
+		<h:outputText id="applicationCounterValue" value="ApplicationScoped Counter: #{applicationScopeCounterController.requestCounter}" />
+		<br />
+		
+		<b:form>
+			<h:commandButton value="JSF actionListener Submit" 
+				action="#{requestScopeCounterController.submitAction()}">
+			</h:commandButton>
+			<h:commandButton value="JSF action Submit" 
+				actionListener="#{requestScopeCounterController.submitAction()}">
+			</h:commandButton>
+			<h:commandButton value="JSF action and actionListener Submit" 
+				actionListener="#{requestScopeCounterController.submitAction()}"
+				action="#{requestScopeCounterController.submitActionListener()}">
+			</h:commandButton>
+			<h:commandButton value="JSF actionListener submit and action redirect" 
+				action="/index?faces-redirect=true"
+				actionListener="#{requestScopeCounterController.submitAction()}">
+			</h:commandButton>
+			<h:commandButton value="JSF action redirect submit" 
+				action="#{requestScopeCounterController.submitActionRedirect()}">
+			</h:commandButton>
+
+			<br />
+			
+			<b:commandButton value="Update RequestScoped Counter"
+				icon="stats"
+				ajax="true" update="jsfmessages bootsfacesmessages primefacesmessages requestCounterValue viewCounterValue sessionCounterValue applicationCounterValue"
+				actionListener="#{requestScopeCounterController.submit()}" />
+
+			<b:commandButton value="Update ViewScoped Counter"
+				look="primary"
+				icon="stats"
+				ajax="true" update="jsfmessages bootsfacesmessages primefacesmessages  requestCounterValue viewCounterValue sessionCounterValue applicationCounterValue"
+				actionListener="#{viewScopeCounterController.submit()}" />
+
+			<b:commandButton value="Update SessionScoped Counter"
+				look="info"
+				icon="stats"
+				ajax="true" update="jsfmessages bootsfacesmessages primefacesmessages  requestCounterValue viewCounterValue sessionCounterValue applicationCounterValue"
+				actionListener="#{sessionScopeCounterController.submit()}" />
+
+			<b:commandButton value="Update ApplicationScoped Counter"
+				look="success"
+				icon="stats"
+				ajax="true" update="jsfmessages bootsfacesmessages primefacesmessages  requestCounterValue viewCounterValue sessionCounterValue applicationCounterValue"
+				actionListener="#{applicationScopeCounterController.submit()}" />
+			
+<f:verbatim>			
+			<h:commandButton value="JSF AJAX Submit" 
+				actionListener="#{requestScopeCounterController.submit()}">
+				<f:ajax execute="@form" render="jsfmessages bootsfacesmessages primefacesmessages"/>
+			</h:commandButton>
+			
+			<br />
+			
+			<b:commandButton value="BootsFaces Submit" 
+				actionListener="#{requestScopeCounterController.submit()}" />
+			<p:commandButton value="PrimeFaces Submit" 
+				ajax="false"
+				actionListener="#{requestScopeCounterController.submit()}"/>
+
+			<br />				
+
+			<b:commandButton value="BootsFaces AJAX Submit" 
+				ajax="true" update="jsfmessages bootsfacesmessages primefacesmessages"
+				actionListener="#{requestScopeCounterController.submit()}" />
+			<p:commandButton value="PrimeFaces AJAX Submit" 
+				update="jsfmessages bootsfacesmessages primefacesmessages"
+				actionListener="#{requestScopeCounterController.submit()}"/>
+</f:verbatim>		
+		
+		</b:form>
+
+
+
+	</ui:define>
+
+
+	<ui:define name="bodyscripts">
+	
+	</ui:define>
+	
+</ui:composition>

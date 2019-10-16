@@ -20,31 +20,31 @@ public class ScheduledPhotoEnforcementZoneDetailManager {
 	private List<ScheduledPhotoEnforcementZoneDetail> zones = new ArrayList<>();
 
 	public ScheduledPhotoEnforcementZoneDetailManager() throws IOException {
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/Scheduled_Photo_Enforcement_Zone_Details.csv"))) ) {
-			String line;
-			final String delimiter = ",";
-			// Skip the first line as it is containing column headings
-			reader.readLine();
-			while ((line = reader.readLine()) != null) {
-				String[] values = line.split(delimiter);
-				ScheduledPhotoEnforcementZoneDetail zone = new ScheduledPhotoEnforcementZoneDetail();
-				zone.setSiteId( values[0] );
-				zone.setRoadName( values[1] );
-				zone.setLocationDescription( values[1] );
-				zone.setFromPoint(values[4]);
-				zone.setToPoint(values[5]);
-				zone.setSpeedLimit( Integer.parseInt(values[6]) );
-				zones.add(zone);
-			}			
-		}
+//		try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/Scheduled_Photo_Enforcement_Zone_Details.csv"))) ) {
+//			String line;
+//			final String delimiter = ",";
+//			// Skip the first line as it is containing column headings
+//			reader.readLine();
+//			while ((line = reader.readLine()) != null) {
+//				String[] values = line.split(delimiter);
+//				ScheduledPhotoEnforcementZoneDetail zone = new ScheduledPhotoEnforcementZoneDetail();
+//				zone.setSiteId( values[0] );
+//				zone.setRoadName( values[1] );
+//				zone.setLocationDescription( values[1] );
+//				zone.setFromPoint(values[4]);
+//				zone.setToPoint(values[5]);
+//				zone.setSpeedLimit( Integer.parseInt(values[6]) );
+//				zones.add(zone);
+//			}			
+//		}
 		
-//		CsvMapper mapper = new CsvMapper();
-//		CsvSchema schema = CsvSchema.emptySchema().withHeader();
-//		MappingIterator<ScheduledPhotoEnforcementZoneDetail> iter = mapper
-//				.readerFor(ScheduledPhotoEnforcementZoneDetail.class)
-//				.with(schema)
-//				.readValues(getClass().getResourceAsStream("/Scheduled_Photo_Enforcement_Zone_Details.csv"));
-//		zones = iter.readAll();
+		CsvMapper mapper = new CsvMapper();
+		CsvSchema schema = CsvSchema.emptySchema().withHeader();
+		MappingIterator<ScheduledPhotoEnforcementZoneDetail> iter = mapper
+				.readerFor(ScheduledPhotoEnforcementZoneDetail.class)
+				.with(schema)
+				.readValues(getClass().getResourceAsStream("/Scheduled_Photo_Enforcement_Zone_Details.csv"));
+		zones = iter.readAll();
 	}
 	
 	public List<ScheduledPhotoEnforcementZoneDetail> getZonesOrderBySpeedLimit() {

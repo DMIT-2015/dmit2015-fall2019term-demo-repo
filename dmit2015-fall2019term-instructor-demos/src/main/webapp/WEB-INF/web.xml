@@ -21,6 +21,22 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
+	
+	<!-- BootsFaces Theme Usage -->
+	<context-param>
+		<param-name>BootsFaces_USETHEME</param-name>
+		<param-value>default</param-value>
+	</context-param>
+	<context-param>
+		<param-name>BootsFaces_THEME</param-name>
+		<param-value>#{theme.currentTheme}</param-value>
+	</context-param>
+	<!-- Activates the waitcursor and the double-click protection -->
+	<context-param>
+		<param-name>net.bootsfaces.blockUI</param-name>
+		<param-value>true</param-value>
+	</context-param>	
 </web-app>

@@ -16,17 +16,16 @@ import lombok.NoArgsConstructor;
 public class Loan {
 	
 	// must be >= 50000
-	@DecimalMin(value = "50000", 
-			message = "Amount must be at least ${formatter.format('$%,.2f',value)}")
+	@DecimalMin(value = "50000", message = "Mortgage Amount must be at least ${value}")
 	private double mortgageAmount;
 	
 	// must be > 0
-	@DecimalMin(value = "0.01", message = "Amount must be at least ${value}")
+	@DecimalMin(value = "0.01", message = "Annual Interest Rate must be at least ${value}")
 	private double annualInterestRate;
 	
 	// must be between 1 and 25
-	@Min(value = 1, message="Amortization Period must be between ${value} and 25 years")
-	@Max(value = 25, message="Amortization Period must be between 1 and ${value} years")
+	@Min(value = 1, message="Amortization Period must be between {value} and 25 years")
+	@Max(value = 25, message="Amortization Period must be between 1 and {value} years")
 	private int amortizationPeriod;
 	
 	public double monthlyPayment() {

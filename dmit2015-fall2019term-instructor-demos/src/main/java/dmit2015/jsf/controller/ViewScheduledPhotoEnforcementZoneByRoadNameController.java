@@ -18,7 +18,7 @@ import lombok.Setter;
 
 @Named
 @ViewScoped
-public class ViewScheduledPhotoEnforcementZoneBySpeedLimitController implements Serializable {
+public class ViewScheduledPhotoEnforcementZoneByRoadNameController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private ScheduledPhotoEnforcementZoneDetailManager zoneManager;
@@ -27,25 +27,25 @@ public class ViewScheduledPhotoEnforcementZoneBySpeedLimitController implements 
 	private List<ScheduledPhotoEnforcementZoneDetail> zones;
 
 	@Getter @Setter
-	private Integer selectedSpeedLimit;
+	private String selectedRoadName;
 	
 	@Getter
-	private List<Integer> distinctSpeedLimits;
+	private List<String> distinctRoadNames;
 	
 	@PostConstruct
 	void init() {
 		try {
 			zoneManager = new ScheduledPhotoEnforcementZoneDetailManager();
-			distinctSpeedLimits = zoneManager.getDistinctSpeedLimits();
+			distinctRoadNames = zoneManager.getDistinctRoadNames();
 		} catch (IOException e) {
-			Messages.addGlobalFatal("{0}: error loading data from CSV file", ViewScheduledPhotoEnforcementZoneBySpeedLimitController.class.getSimpleName());
+			Messages.addGlobalFatal("{0}: error loading data from CSV file", ViewScheduledPhotoEnforcementZoneByRoadNameController.class.getSimpleName());
 		}
 	}
 	
-	public void changeSpeedLimit() {
-		if (selectedSpeedLimit != null) {
-			zones = zoneManager.getZonesBySpeedLimit(selectedSpeedLimit);
-			Messages.addGlobalInfo("Zones with a speed limit of {0} km/h", selectedSpeedLimit);
+	public void changeRoadName() {
+		if (selectedRoadName != null) {
+			zones = zoneManager.getZonesByRoadName(selectedRoadName);
+			Messages.addGlobalInfo("Zones for {0}", selectedRoadName);
 		} else {
 			zones = null;
 		}
