@@ -24,7 +24,7 @@ public class ViewScheduledPhotoEnforcementZoneBySpeedLimitController implements 
 	private ScheduledPhotoEnforcementZoneDetailManager zoneManager;
 	
 	@Getter
-	private List<ScheduledPhotoEnforcementZoneDetail> zones;
+	private List<ScheduledPhotoEnforcementZoneDetail> filteredZones;
 
 	@Getter @Setter
 	private Integer selectedSpeedLimit;
@@ -44,10 +44,10 @@ public class ViewScheduledPhotoEnforcementZoneBySpeedLimitController implements 
 	
 	public void changeSpeedLimit() {
 		if (selectedSpeedLimit != null) {
-			zones = zoneManager.getZonesBySpeedLimit(selectedSpeedLimit);
+			filteredZones = zoneManager.getZonesBySpeedLimit(selectedSpeedLimit);
 			Messages.addGlobalInfo("Zones with a speed limit of {0} km/h", selectedSpeedLimit);
 		} else {
-			zones = null;
+			filteredZones = null;
 		}
 	}
 }

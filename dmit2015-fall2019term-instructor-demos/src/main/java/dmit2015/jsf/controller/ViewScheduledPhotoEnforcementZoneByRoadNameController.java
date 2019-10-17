@@ -24,7 +24,7 @@ public class ViewScheduledPhotoEnforcementZoneByRoadNameController implements Se
 	private ScheduledPhotoEnforcementZoneDetailManager zoneManager;
 	
 	@Getter
-	private List<ScheduledPhotoEnforcementZoneDetail> zones;
+	private List<ScheduledPhotoEnforcementZoneDetail> filteredZones;
 
 	@Getter @Setter
 	private String selectedRoadName;
@@ -44,10 +44,10 @@ public class ViewScheduledPhotoEnforcementZoneByRoadNameController implements Se
 	
 	public void changeRoadName() {
 		if (selectedRoadName != null) {
-			zones = zoneManager.getZonesByRoadName(selectedRoadName);
+			filteredZones = zoneManager.getZonesByRoadName(selectedRoadName);
 			Messages.addGlobalInfo("Zones for {0}", selectedRoadName);
 		} else {
-			zones = null;
+			filteredZones = null;
 		}
 	}
 }

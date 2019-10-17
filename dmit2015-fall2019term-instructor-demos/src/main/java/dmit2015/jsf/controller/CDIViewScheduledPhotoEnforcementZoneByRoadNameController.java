@@ -24,25 +24,25 @@ public class CDIViewScheduledPhotoEnforcementZoneByRoadNameController implements
 	private CDIViewScheduledPhotoEnforcementZonesController vspepezController;
 	
 	@Getter
-	private List<ScheduledPhotoEnforcementZoneDetail> zones;
+	private List<ScheduledPhotoEnforcementZoneDetail> filteredZones;
 
 	@Getter @Setter
 	private String selectedRoadName;
 		
 	@PostConstruct
 	void init() {
-		
+	
 	}
 	
 	public void changeRoadName() {
 		if (selectedRoadName != null) {
-			zones = vspepezController.getZones()
+			filteredZones = vspepezController.getZones()
 					.stream()
 					.filter(instance -> instance.getRoadName().equalsIgnoreCase(selectedRoadName))
 					.collect(Collectors.toList());
 			Messages.addGlobalInfo("Zones for {0}", selectedRoadName);
 		} else {
-			zones = null;
+			filteredZones = null;
 		}
 	}
 }
