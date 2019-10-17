@@ -1,7 +1,6 @@
 package dmit2015.jsf.controller;
 
 import java.io.Serializable;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
