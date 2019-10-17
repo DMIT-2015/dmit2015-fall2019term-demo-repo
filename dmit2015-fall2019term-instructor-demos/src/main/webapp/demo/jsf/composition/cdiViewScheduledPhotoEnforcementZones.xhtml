@@ -35,7 +35,7 @@
 
 <b:messages id="messages"></b:messages>
 
-<b:dataTable value="#{viewScheduledPhotoEnforcementZonesController.zones}" var="item"
+<b:dataTable value="#{cDIViewScheduledPhotoEnforcementZonesController.zones}" var="item"
 	paginated="false"
 	searching="false"
 >
@@ -50,8 +50,6 @@
 	<b:dataTableColumn label="Speed Limit" value="#{item.speedLimit}" style-class="text-right"/>
 	
 </b:dataTable>	
-
-
 
 
 	</ui:define>

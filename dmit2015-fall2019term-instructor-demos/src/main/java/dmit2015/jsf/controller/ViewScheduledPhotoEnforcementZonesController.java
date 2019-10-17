@@ -16,7 +16,7 @@ import lombok.Getter;
 
 @Named
 @ApplicationScoped
-public class ViewScheduledPhotoEnforcementZoneController {
+public class ViewScheduledPhotoEnforcementZonesController {
 
 	private ScheduledPhotoEnforcementZoneDetailManager zoneManager;
 	
@@ -29,7 +29,7 @@ public class ViewScheduledPhotoEnforcementZoneController {
 			zoneManager = new ScheduledPhotoEnforcementZoneDetailManager();
 			zones = zoneManager.getZones();
 		} catch (IOException e) {
-			Messages.addGlobalFatal("{0}: error loading data from CSV file", ViewScheduledPhotoEnforcementZoneController.class.getSimpleName());
+			Messages.addGlobalFatal("{0}: error loading data from CSV file", ViewScheduledPhotoEnforcementZonesController.class.getSimpleName());
 		}
 	}
 }
