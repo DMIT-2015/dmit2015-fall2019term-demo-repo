@@ -1,39 +1,33 @@
 package dmit2015.csv;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.enterprise.context.ApplicationScoped;
+
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+
 import lombok.Getter;
 
-public class ScheduledPhotoEnforcementZoneDetailManager {
+@ApplicationScoped
+public class ScheduledPhotoEnforcementZoneDetailRepository {
 
 	@Getter
 	private List<ScheduledPhotoEnforcementZoneDetail> zones = new ArrayList<>();
 
-	public ScheduledPhotoEnforcementZoneDetailManager() throws IOException {
-		try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getResourceAsStream("/Scheduled_Photo_Enforcement_Zone_Details.csv"))) ) {
-			String line;
-			final String delimiter = ",";
-			// Skip the first line as it is containing column headings
-			reader.readLine();
-			while ((line = reader.readLine()) != null) {
-				String[] values = line.split(delimiter);
-				ScheduledPhotoEnforcementZoneDetail zone = new ScheduledPhotoEnforcementZoneDetail();
-				zone.setSiteId( values[0] );
-				zone.setRoadName( values[1] );
-				zone.setLocationDescription( values[1] );
-				zone.setFromPoint(values[4]);
-				zone.setToPoint(values[5]);
-				zone.setSpeedLimit( Integer.parseInt(values[6]) );
-				zones.add(zone);
-			}			
-		}
-		
+	public ScheduledPhotoEnforcementZoneDetailRepository() throws IOException {
+		CsvMapper mapper = new CsvMapper();
+		CsvSchema schema = CsvSchema.emptySchema().withHeader();
+		MappingIterator<ScheduledPhotoEnforcementZoneDetail> iter = mapper
+				.readerFor(ScheduledPhotoEnforcementZoneDetail.class)
+				.with(schema)
+				.readValues(getClass().getResourceAsStream("/Scheduled_Photo_Enforcement_Zone_Details.csv"));
+		zones = iter.readAll();
 	}
 	
 	public List<ScheduledPhotoEnforcementZoneDetail> getZonesOrderBySpeedLimit() {
@@ -50,6 +44,11 @@ public class ScheduledPhotoEnforcementZoneDetailManager {
 		Comparator<ScheduledPhotoEnforcementZoneDetail> roadNameComparator = (lhs, rhs) -> lhs.getRoadName().compareToIgnoreCase(rhs.getRoadName());
 		Comparator<ScheduledPhotoEnforcementZoneDetail> locationDescriptionComparator = (lhs, rhs) -> lhs.getLocationDescription().compareToIgnoreCase(rhs.getLocationDescription());
 		return zones.stream().sorted(roadNameComparator.thenComparing(locationDescriptionComparator)).collect(Collectors.toList());
+	}
+	
+	public List<ScheduledPhotoEnforcementZoneDetail> getZonesOrderByRoadNameDescending() {
+		Comparator<ScheduledPhotoEnforcementZoneDetail> roadNameComparator = (lhs, rhs) -> lhs.getRoadName().compareToIgnoreCase(rhs.getRoadName());
+		return zones.stream().sorted(roadNameComparator.reversed()).collect(Collectors.toList());
 	}
 
 	public List<ScheduledPhotoEnforcementZoneDetail> getZonesBySpeedLimit(int speedLimit) {
@@ -69,7 +68,12 @@ public class ScheduledPhotoEnforcementZoneDetailManager {
 	}
 
 	public List<String> getDistinctRoadNames() {
-		return zones.stream().map(ScheduledPhotoEnforcementZoneDetail::getRoadName).distinct().sorted().collect(Collectors.toList());
+		return zones.stream()
+				.map(ScheduledPhotoEnforcementZoneDetail::getRoadName)
+				.distinct()
+				.filter(instance -> !instance.isBlank())
+				.sorted()
+				.collect(Collectors.toList());
 	}
 
 }
