@@ -24,9 +24,9 @@ public class ScheduledPhotoEnforcementZoneDetailManager {
 			while ((line = reader.readLine()) != null) {
 				String[] values = line.split(delimiter);
 				ScheduledPhotoEnforcementZoneDetail zone = new ScheduledPhotoEnforcementZoneDetail();
-				zone.setSiteId( values[0] );
+				zone.setSiteId( Integer.parseInt(values[0]) );
 				zone.setRoadName( values[1] );
-				zone.setLocationDescription( values[1] );
+				zone.setLocationDescription( values[2] );
 				zone.setFromPoint(values[4]);
 				zone.setToPoint(values[5]);
 				zone.setSpeedLimit( Integer.parseInt(values[6]) );
