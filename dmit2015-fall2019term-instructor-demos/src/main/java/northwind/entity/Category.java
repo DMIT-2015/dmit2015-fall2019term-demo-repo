@@ -2,6 +2,7 @@ package northwind.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -29,6 +30,10 @@ public class Category implements Serializable {
 	@Column(name="Picture")
 	private byte[] picture;
 
+	//bi-directional many-to-one association to Product
+	@OneToMany(mappedBy="category")
+	private List<Product> products;
+
 	public Category() {
 	}
 
@@ -48,7 +53,7 @@ public class Category implements Serializable {
 		this.categoryName = categoryName;
 	}
 
-	public Object getDescription() {
+	public String getDescription() {
 		return this.description;
 	}
 
@@ -62,6 +67,28 @@ public class Category implements Serializable {
 
 	public void setPicture(byte[] picture) {
 		this.picture = picture;
+	}
+
+	public List<Product> getProducts() {
+		return this.products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public Product addProduct(Product product) {
+		getProducts().add(product);
+		product.setCategory(this);
+
+		return product;
+	}
+
+	public Product removeProduct(Product product) {
+		getProducts().remove(product);
+		product.setCategory(null);
+
+		return product;
 	}
 
 }
