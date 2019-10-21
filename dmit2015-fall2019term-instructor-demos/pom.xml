@@ -26,6 +26,14 @@
 	</repositories>
 
 	<dependencies>
+		
+		<!-- https://mvnrepository.com/artifact/com.microsoft.sqlserver/mssql-jdbc -->
+		<dependency>
+		    <groupId>com.microsoft.sqlserver</groupId>
+		    <artifactId>mssql-jdbc</artifactId>
+		    <version>7.4.1.jre11</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>

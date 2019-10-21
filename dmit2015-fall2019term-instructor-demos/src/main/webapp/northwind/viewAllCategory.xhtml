@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:hf="http://highfaces.org"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:of="http://omnifaces.org/functions"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+    	<!-- Required meta tags -->
+    	<meta charset="utf-8" />
+    	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />    
+        
+        <title>Northwind Categories</title>        
+    </h:head>
+
+	<h:body>
+		<h1>Northwind Categories</h1>
+
+		<b:messages id="messages" />
+		
+		<b:form>
+			<b:dataTable id="categoryTable"
+				value="#{viewAllCategoryController.allCategory}"
+				var="item">
+				
+				<b:dataTableColumn value="#{item.categoryID}"></b:dataTableColumn>
+				
+				<b:dataTableColumn value="#{item.categoryName}" label="Category Name"></b:dataTableColumn>
+			
+				<b:dataTableColumn value="#{item.description}"></b:dataTableColumn>				
+				
+			</b:dataTable>
+			
+			<b:selectOneMenu id="categorySelectOne">
+				<f:selectItem itemLabel="" itemValue=""/>
+				<f:selectItems value="#{viewAllCategoryController.allCategory}"
+					var="item"
+					itemLabel="#{item.categoryName}"
+					itemValue="#{item.categoryID}">
+				</f:selectItems>
+			</b:selectOneMenu>
+		</b:form>
+
+	</h:body>
+
+</html>
