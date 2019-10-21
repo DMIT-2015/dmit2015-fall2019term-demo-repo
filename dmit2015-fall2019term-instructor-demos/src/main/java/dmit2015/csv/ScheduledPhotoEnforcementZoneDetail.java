@@ -10,7 +10,7 @@ import lombok.Data;
 public class ScheduledPhotoEnforcementZoneDetail {
 
 	@JsonProperty("Site ID")
-	private String siteId;
+	private Integer siteId;
 
 	@JsonProperty("Road Name")
 	private String roadName;
