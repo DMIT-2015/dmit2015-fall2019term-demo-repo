@@ -40,13 +40,13 @@ public class CDIViewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameControll
 		Integer selectedSpeedLimit = speedLimitController.getSelectedSpeedLimit();
 		String selectedRoadName = roadNameController.getSelectedRoadName();
 		
-		if (selectedSpeedLimit != null && selectedRoadName != null) {
+		if (selectedSpeedLimit != null && !selectedRoadName.isBlank()) {
 			filteredZones = spezdRepository.getZonesBySpeedLimitAndRoadName(selectedSpeedLimit, selectedRoadName);
 			Messages.addGlobalInfo("Zones with a speed limit of {0} km/h and at {1}", selectedSpeedLimit, selectedRoadName);
-		} else if (selectedSpeedLimit != null && selectedRoadName == null) {
+		} else if (selectedSpeedLimit != null && selectedRoadName.isBlank()) {
 			filteredZones = spezdRepository.getZonesBySpeedLimit(selectedSpeedLimit);
 			Messages.addGlobalInfo("Zones with a speed limit of {0} km/h", selectedSpeedLimit);
-		} else if (selectedSpeedLimit == null && selectedRoadName != null) {
+		} else if (selectedSpeedLimit == null && !selectedRoadName.isBlank()) {
 			filteredZones = spezdRepository.getZonesByRoadName(selectedRoadName);
 			Messages.addGlobalInfo("Zones for {0}", selectedRoadName);
 		} else {

@@ -50,13 +50,13 @@ public class ViewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController 
 	}
 	
 	public void filterZones() {
-		if (selectedSpeedLimit != null && selectedRoadName != null) {
+		if (selectedSpeedLimit != null && !selectedRoadName.isBlank()) {
 			filteredZones = zoneManager.getZonesBySpeedLimitAndRoadName(selectedSpeedLimit, selectedRoadName);
 			Messages.addGlobalInfo("Zones with a speed limit of {0} km/h and at {1}", selectedSpeedLimit, selectedRoadName);
-		} else if (selectedSpeedLimit != null && selectedRoadName == null) {
+		} else if (selectedSpeedLimit != null && selectedRoadName.isBlank()) {
 			filteredZones = zoneManager.getZonesBySpeedLimit(selectedSpeedLimit);
 			Messages.addGlobalInfo("Zones with a speed limit of {0} km/h", selectedSpeedLimit);
-		} else if (selectedSpeedLimit == null && selectedRoadName != null) {
+		} else if (selectedSpeedLimit == null && !selectedRoadName.isBlank()) {
 			filteredZones = zoneManager.getZonesByRoadName(selectedRoadName);
 			Messages.addGlobalInfo("Zones for {0}", selectedRoadName);
 		} else {
