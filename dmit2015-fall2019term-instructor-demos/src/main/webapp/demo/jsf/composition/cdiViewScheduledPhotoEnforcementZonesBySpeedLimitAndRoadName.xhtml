@@ -13,7 +13,7 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	template="/WEB-INF/templates/bootsfaces-template.xhtml">
 	
-	<ui:param name="title" value="Scheduled Photo Enforcement Zones by Speed Limit" />
+	<ui:param name="title" value="Scheduled Photo Enforcement Zones by Speed Limit and Road Name" />
 	
 	<ui:define name="externalstyles">
 	
@@ -31,24 +31,36 @@
 	<ui:define name="maincontent">
 
 <b:jumbotron>
-	<h1>Scheduled Photo Enforcement Zones by Speed Limit</h1>
+	<h1>Scheduled Photo Enforcement Zones by Speed Limit and Road Name</h1>
 </b:jumbotron>
 
 <b:messages id="messages"></b:messages>
 
 <b:form>
+
 	<b:selectOneMenu id="speedLimit" 
 		label="Select speed limit"
-		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.selectedSpeedLimit}"
-		onchange="ajax:viewScheduledPhotoEnforcementZoneBySpeedLimitController.changeSpeedLimit()"
+		value="#{cDIViewScheduledPhotoEnforcementZoneBySpeedLimitController.selectedSpeedLimit}"
+		onchange="ajax:cDIViewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.filterZones()"
 		update=":messages zoneTable">
 		<f:selectItem itemLabel="---select speed limit----" itemValue="" />
-		<f:selectItems value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.distinctSpeedLimits}" 
+		<f:selectItems value="#{cDIViewScheduledPhotoEnforcementZoneBySpeedLimitController.distinctSpeedLimits}" 
 			var="speedLimit" itemLabel="#{speedLimit}" itemValue="#{speedLimit}" />
+	</b:selectOneMenu>
+	
+	
+	<b:selectOneMenu id="roadName" 
+		label="Select Road Name"
+		value="#{cDIViewScheduledPhotoEnforcementZoneByRoadNameController.selectedRoadName}"
+		onchange="ajax:cDIViewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.filterZones()"
+		update=":messages zoneTable">
+		<f:selectItem itemLabel="---select road name----" itemValue="" />
+		<f:selectItems value="#{cDIViewScheduledPhotoEnforcementZonesController.distinctRoadNames}" 
+			var="roadName" itemLabel="#{roadName}" itemValue="#{roadName}" />
 	</b:selectOneMenu>
 
 	<b:dataTable id="zoneTable" 
-		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.filteredZones}" var="item"
+		value="#{cDIViewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.filteredZones}" var="item"
 		paginated="false"
 		searching="false"
 	>

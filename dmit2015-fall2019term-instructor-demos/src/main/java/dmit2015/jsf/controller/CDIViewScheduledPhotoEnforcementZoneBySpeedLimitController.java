@@ -17,7 +17,7 @@ import lombok.Setter;
 
 @Named
 @ViewScoped
-public class CDIViewScheduledPhotoEnforcementZoneByRoadNameController implements Serializable {
+public class CDIViewScheduledPhotoEnforcementZoneBySpeedLimitController implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
@@ -27,17 +27,20 @@ public class CDIViewScheduledPhotoEnforcementZoneByRoadNameController implements
 	private List<ScheduledPhotoEnforcementZoneDetail> filteredZones;
 
 	@Getter @Setter
-	private String selectedRoadName;
-		
+	private Integer selectedSpeedLimit;
+	
+	@Getter
+	private List<Integer> distinctSpeedLimits;
+	
 	@PostConstruct
 	void init() {
-	
+		distinctSpeedLimits = spezdRepository.getDistinctSpeedLimits();
 	}
 	
-	public void changeRoadName() {
-		if (selectedRoadName != null) {
-			filteredZones = spezdRepository.getZonesByRoadName(selectedRoadName);
-			Messages.addGlobalInfo("Zones for {0}", selectedRoadName);
+	public void changeSpeedLimit() {
+		if (selectedSpeedLimit != null) {
+			filteredZones = spezdRepository.getZonesBySpeedLimit(selectedSpeedLimit);
+			Messages.addGlobalInfo("Zones with a speed limit of {0} km/h", selectedSpeedLimit);
 		} else {
 			filteredZones = null;
 		}

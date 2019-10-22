@@ -32,25 +32,25 @@ public class Order implements Serializable {
 	private Timestamp requiredDate;
 
 	@Column(name="ShipAddress")
-	private Object shipAddress;
+	private String shipAddress;
 
 	@Column(name="ShipCity")
-	private Object shipCity;
+	private String shipCity;
 
 	@Column(name="ShipCountry")
-	private Object shipCountry;
+	private String shipCountry;
 
 	@Column(name="ShipName")
-	private Object shipName;
+	private String shipName;
 
 	@Column(name="ShippedDate")
 	private Timestamp shippedDate;
 
 	@Column(name="ShipPostalCode")
-	private Object shipPostalCode;
+	private String shipPostalCode;
 
 	@Column(name="ShipRegion")
-	private Object shipRegion;
+	private String shipRegion;
 
 	//bi-directional many-to-one association to OrderDetail
 	@OneToMany(mappedBy="order")
@@ -106,35 +106,35 @@ public class Order implements Serializable {
 		this.requiredDate = requiredDate;
 	}
 
-	public Object getShipAddress() {
+	public String getShipAddress() {
 		return this.shipAddress;
 	}
 
-	public void setShipAddress(Object shipAddress) {
+	public void setShipAddress(String shipAddress) {
 		this.shipAddress = shipAddress;
 	}
 
-	public Object getShipCity() {
+	public String getShipCity() {
 		return this.shipCity;
 	}
 
-	public void setShipCity(Object shipCity) {
+	public void setShipCity(String shipCity) {
 		this.shipCity = shipCity;
 	}
 
-	public Object getShipCountry() {
+	public String getShipCountry() {
 		return this.shipCountry;
 	}
 
-	public void setShipCountry(Object shipCountry) {
+	public void setShipCountry(String shipCountry) {
 		this.shipCountry = shipCountry;
 	}
 
-	public Object getShipName() {
+	public String getShipName() {
 		return this.shipName;
 	}
 
-	public void setShipName(Object shipName) {
+	public void setShipName(String shipName) {
 		this.shipName = shipName;
 	}
 
@@ -146,19 +146,19 @@ public class Order implements Serializable {
 		this.shippedDate = shippedDate;
 	}
 
-	public Object getShipPostalCode() {
+	public String getShipPostalCode() {
 		return this.shipPostalCode;
 	}
 
-	public void setShipPostalCode(Object shipPostalCode) {
+	public void setShipPostalCode(String shipPostalCode) {
 		this.shipPostalCode = shipPostalCode;
 	}
 
-	public Object getShipRegion() {
+	public String getShipRegion() {
 		return this.shipRegion;
 	}
 
-	public void setShipRegion(Object shipRegion) {
+	public void setShipRegion(String shipRegion) {
 		this.shipRegion = shipRegion;
 	}
 

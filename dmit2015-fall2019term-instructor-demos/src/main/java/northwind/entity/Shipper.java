@@ -21,10 +21,10 @@ public class Shipper implements Serializable {
 	private int shipperID;
 
 	@Column(name="CompanyName")
-	private Object companyName;
+	private String companyName;
 
 	@Column(name="Phone")
-	private Object phone;
+	private String phone;
 
 	//bi-directional many-to-one association to Order
 	@OneToMany(mappedBy="shipper")
@@ -41,19 +41,19 @@ public class Shipper implements Serializable {
 		this.shipperID = shipperID;
 	}
 
-	public Object getCompanyName() {
+	public String getCompanyName() {
 		return this.companyName;
 	}
 
-	public void setCompanyName(Object companyName) {
+	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
 
-	public Object getPhone() {
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(Object phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

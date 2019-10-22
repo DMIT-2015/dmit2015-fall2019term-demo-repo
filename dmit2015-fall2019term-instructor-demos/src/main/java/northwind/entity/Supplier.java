@@ -21,37 +21,37 @@ public class Supplier implements Serializable {
 	private int supplierID;
 
 	@Column(name="Address")
-	private Object address;
+	private String address;
 
 	@Column(name="City")
-	private Object city;
+	private String city;
 
 	@Column(name="CompanyName")
-	private Object companyName;
+	private String companyName;
 
 	@Column(name="ContactName")
-	private Object contactName;
+	private String contactName;
 
 	@Column(name="ContactTitle")
-	private Object contactTitle;
+	private String contactTitle;
 
 	@Column(name="Country")
-	private Object country;
+	private String country;
 
 	@Column(name="Fax")
-	private Object fax;
+	private String fax;
 
 	@Column(name="HomePage")
-	private Object homePage;
+	private String homePage;
 
 	@Column(name="Phone")
-	private Object phone;
+	private String phone;
 
 	@Column(name="PostalCode")
-	private Object postalCode;
+	private String postalCode;
 
 	@Column(name="Region")
-	private Object region;
+	private String region;
 
 	//bi-directional many-to-one association to Product
 	@OneToMany(mappedBy="supplier")
@@ -68,91 +68,91 @@ public class Supplier implements Serializable {
 		this.supplierID = supplierID;
 	}
 
-	public Object getAddress() {
+	public String getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(Object address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
-	public Object getCity() {
+	public String getCity() {
 		return this.city;
 	}
 
-	public void setCity(Object city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
-	public Object getCompanyName() {
+	public String getCompanyName() {
 		return this.companyName;
 	}
 
-	public void setCompanyName(Object companyName) {
+	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
 
-	public Object getContactName() {
+	public String getContactName() {
 		return this.contactName;
 	}
 
-	public void setContactName(Object contactName) {
+	public void setContactName(String contactName) {
 		this.contactName = contactName;
 	}
 
-	public Object getContactTitle() {
+	public String getContactTitle() {
 		return this.contactTitle;
 	}
 
-	public void setContactTitle(Object contactTitle) {
+	public void setContactTitle(String contactTitle) {
 		this.contactTitle = contactTitle;
 	}
 
-	public Object getCountry() {
+	public String getCountry() {
 		return this.country;
 	}
 
-	public void setCountry(Object country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
-	public Object getFax() {
+	public String getFax() {
 		return this.fax;
 	}
 
-	public void setFax(Object fax) {
+	public void setFax(String fax) {
 		this.fax = fax;
 	}
 
-	public Object getHomePage() {
+	public String getHomePage() {
 		return this.homePage;
 	}
 
-	public void setHomePage(Object homePage) {
+	public void setHomePage(String homePage) {
 		this.homePage = homePage;
 	}
 
-	public Object getPhone() {
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(Object phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public Object getPostalCode() {
+	public String getPostalCode() {
 		return this.postalCode;
 	}
 
-	public void setPostalCode(Object postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
-	public Object getRegion() {
+	public String getRegion() {
 		return this.region;
 	}
 
-	public void setRegion(Object region) {
+	public void setRegion(String region) {
 		this.region = region;
 	}
 

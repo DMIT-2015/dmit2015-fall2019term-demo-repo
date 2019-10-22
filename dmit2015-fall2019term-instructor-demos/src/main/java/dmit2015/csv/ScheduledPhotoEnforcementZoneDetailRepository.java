@@ -54,9 +54,16 @@ public class ScheduledPhotoEnforcementZoneDetailRepository {
 	public List<ScheduledPhotoEnforcementZoneDetail> getZonesBySpeedLimit(int speedLimit) {
 		return zones.stream().filter(instance -> instance.getSpeedLimit() == speedLimit).collect(Collectors.toList());
 	}
-
+	
 	public List<ScheduledPhotoEnforcementZoneDetail> getZonesByRoadName(String roadName) {
 		return zones.stream().filter(instance -> instance.getRoadName().equalsIgnoreCase(roadName)).collect(Collectors.toList());
+	}
+
+	public List<ScheduledPhotoEnforcementZoneDetail> getZonesBySpeedLimitAndRoadName(int speedLimit, String roadName) {
+		return zones.stream()
+				.filter(instance -> instance.getSpeedLimit() == speedLimit)
+				.filter(instance -> instance.getRoadName().equalsIgnoreCase(roadName))
+				.collect(Collectors.toList());
 	}
 
 	public List<Integer> getDistinctSpeedLimits() {

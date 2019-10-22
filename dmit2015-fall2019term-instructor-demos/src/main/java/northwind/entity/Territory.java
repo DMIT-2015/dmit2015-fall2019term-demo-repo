@@ -21,7 +21,7 @@ public class Territory implements Serializable {
 	private String territoryID;
 
 	@Column(name="TerritoryDescription")
-	private Object territoryDescription;
+	private String territoryDescription;
 
 	//bi-directional many-to-many association to Employee
 	@ManyToMany
@@ -52,11 +52,11 @@ public class Territory implements Serializable {
 		this.territoryID = territoryID;
 	}
 
-	public Object getTerritoryDescription() {
+	public String getTerritoryDescription() {
 		return this.territoryDescription;
 	}
 
-	public void setTerritoryDescription(Object territoryDescription) {
+	public void setTerritoryDescription(String territoryDescription) {
 		this.territoryDescription = territoryDescription;
 	}
 

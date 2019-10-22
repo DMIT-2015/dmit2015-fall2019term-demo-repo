@@ -39,16 +39,16 @@
 <b:form>
 	<b:selectOneMenu id="speedLimit" 
 		label="Select speed limit"
-		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.selectedSpeedLimit}"
-		onchange="ajax:viewScheduledPhotoEnforcementZoneBySpeedLimitController.changeSpeedLimit()"
+		value="#{cDIViewScheduledPhotoEnforcementZoneBySpeedLimitController.selectedSpeedLimit}"
+		onchange="ajax:cDIViewScheduledPhotoEnforcementZoneBySpeedLimitController.changeSpeedLimit()"
 		update=":messages zoneTable">
 		<f:selectItem itemLabel="---select speed limit----" itemValue="" />
-		<f:selectItems value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.distinctSpeedLimits}" 
+		<f:selectItems value="#{cDIViewScheduledPhotoEnforcementZoneBySpeedLimitController.distinctSpeedLimits}" 
 			var="speedLimit" itemLabel="#{speedLimit}" itemValue="#{speedLimit}" />
 	</b:selectOneMenu>
 
 	<b:dataTable id="zoneTable" 
-		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.filteredZones}" var="item"
+		value="#{cDIViewScheduledPhotoEnforcementZoneBySpeedLimitController.filteredZones}" var="item"
 		paginated="false"
 		searching="false"
 	>

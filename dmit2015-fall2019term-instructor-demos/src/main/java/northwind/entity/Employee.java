@@ -22,53 +22,53 @@ public class Employee implements Serializable {
 	private int employeeID;
 
 	@Column(name="Address")
-	private Object address;
+	private String address;
 
 	@Column(name="BirthDate")
 	private Timestamp birthDate;
 
 	@Column(name="City")
-	private Object city;
+	private String city;
 
 	@Column(name="Country")
-	private Object country;
+	private String country;
 
 	@Column(name="Extension")
-	private Object extension;
+	private String extension;
 
 	@Column(name="FirstName")
-	private Object firstName;
+	private String firstName;
 
 	@Column(name="HireDate")
 	private Timestamp hireDate;
 
 	@Column(name="HomePhone")
-	private Object homePhone;
+	private String homePhone;
 
 	@Column(name="LastName")
-	private Object lastName;
+	private String lastName;
 
 	@Column(name="Notes")
-	private Object notes;
+	private String notes;
 
 	@Lob
 	@Column(name="Photo")
 	private byte[] photo;
 
 	@Column(name="PhotoPath")
-	private Object photoPath;
+	private String photoPath;
 
 	@Column(name="PostalCode")
-	private Object postalCode;
+	private String postalCode;
 
 	@Column(name="Region")
-	private Object region;
+	private String region;
 
 	@Column(name="Title")
-	private Object title;
+	private String title;
 
 	@Column(name="TitleOfCourtesy")
-	private Object titleOfCourtesy;
+	private String titleOfCourtesy;
 
 	//bi-directional many-to-one association to Employee
 	@ManyToOne
@@ -98,11 +98,11 @@ public class Employee implements Serializable {
 		this.employeeID = employeeID;
 	}
 
-	public Object getAddress() {
+	public String getAddress() {
 		return this.address;
 	}
 
-	public void setAddress(Object address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -114,35 +114,35 @@ public class Employee implements Serializable {
 		this.birthDate = birthDate;
 	}
 
-	public Object getCity() {
+	public String getCity() {
 		return this.city;
 	}
 
-	public void setCity(Object city) {
+	public void setCity(String city) {
 		this.city = city;
 	}
 
-	public Object getCountry() {
+	public String getCountry() {
 		return this.country;
 	}
 
-	public void setCountry(Object country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
-	public Object getExtension() {
+	public String getExtension() {
 		return this.extension;
 	}
 
-	public void setExtension(Object extension) {
+	public void setExtension(String extension) {
 		this.extension = extension;
 	}
 
-	public Object getFirstName() {
+	public String getFirstName() {
 		return this.firstName;
 	}
 
-	public void setFirstName(Object firstName) {
+	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
@@ -154,27 +154,27 @@ public class Employee implements Serializable {
 		this.hireDate = hireDate;
 	}
 
-	public Object getHomePhone() {
+	public String getHomePhone() {
 		return this.homePhone;
 	}
 
-	public void setHomePhone(Object homePhone) {
+	public void setHomePhone(String homePhone) {
 		this.homePhone = homePhone;
 	}
 
-	public Object getLastName() {
+	public String getLastName() {
 		return this.lastName;
 	}
 
-	public void setLastName(Object lastName) {
+	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
 
-	public Object getNotes() {
+	public String getNotes() {
 		return this.notes;
 	}
 
-	public void setNotes(Object notes) {
+	public void setNotes(String notes) {
 		this.notes = notes;
 	}
 
@@ -186,43 +186,43 @@ public class Employee implements Serializable {
 		this.photo = photo;
 	}
 
-	public Object getPhotoPath() {
+	public String getPhotoPath() {
 		return this.photoPath;
 	}
 
-	public void setPhotoPath(Object photoPath) {
+	public void setPhotoPath(String photoPath) {
 		this.photoPath = photoPath;
 	}
 
-	public Object getPostalCode() {
+	public String getPostalCode() {
 		return this.postalCode;
 	}
 
-	public void setPostalCode(Object postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
-	public Object getRegion() {
+	public String getRegion() {
 		return this.region;
 	}
 
-	public void setRegion(Object region) {
+	public void setRegion(String region) {
 		this.region = region;
 	}
 
-	public Object getTitle() {
+	public String getTitle() {
 		return this.title;
 	}
 
-	public void setTitle(Object title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public Object getTitleOfCourtesy() {
+	public String getTitleOfCourtesy() {
 		return this.titleOfCourtesy;
 	}
 
-	public void setTitleOfCourtesy(Object titleOfCourtesy) {
+	public void setTitleOfCourtesy(String titleOfCourtesy) {
 		this.titleOfCourtesy = titleOfCourtesy;
 	}
 

@@ -33,22 +33,22 @@ public class Customer implements Serializable {
 	private String contactName;
 
 	@Column(name="ContactTitle")
-	private Object contactTitle;
+	private String contactTitle;
 
 	@Column(name="Country")
-	private Object country;
+	private String country;
 
 	@Column(name="Fax")
-	private Object fax;
+	private String fax;
 
 	@Column(name="Phone")
-	private Object phone;
+	private String phone;
 
 	@Column(name="PostalCode")
-	private Object postalCode;
+	private String postalCode;
 
 	@Column(name="Region")
-	private Object region;
+	private String region;
 
 	//bi-directional many-to-one association to Order
 	@OneToMany(mappedBy="customer")
@@ -97,51 +97,51 @@ public class Customer implements Serializable {
 		this.contactName = contactName;
 	}
 
-	public Object getContactTitle() {
+	public String getContactTitle() {
 		return this.contactTitle;
 	}
 
-	public void setContactTitle(Object contactTitle) {
+	public void setContactTitle(String contactTitle) {
 		this.contactTitle = contactTitle;
 	}
 
-	public Object getCountry() {
+	public String getCountry() {
 		return this.country;
 	}
 
-	public void setCountry(Object country) {
+	public void setCountry(String country) {
 		this.country = country;
 	}
 
-	public Object getFax() {
+	public String getFax() {
 		return this.fax;
 	}
 
-	public void setFax(Object fax) {
+	public void setFax(String fax) {
 		this.fax = fax;
 	}
 
-	public Object getPhone() {
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(Object phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-	public Object getPostalCode() {
+	public String getPostalCode() {
 		return this.postalCode;
 	}
 
-	public void setPostalCode(Object postalCode) {
+	public void setPostalCode(String postalCode) {
 		this.postalCode = postalCode;
 	}
 
-	public Object getRegion() {
+	public String getRegion() {
 		return this.region;
 	}
 
-	public void setRegion(Object region) {
+	public void setRegion(String region) {
 		this.region = region;
 	}
 

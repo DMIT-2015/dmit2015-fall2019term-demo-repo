@@ -39,16 +39,30 @@
 <b:form>
 	<b:selectOneMenu id="speedLimit" 
 		label="Select speed limit"
-		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.selectedSpeedLimit}"
-		onchange="ajax:viewScheduledPhotoEnforcementZoneBySpeedLimitController.changeSpeedLimit()"
+		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.selectedSpeedLimit}"
+		onchange="ajax:viewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.filterZones()"
 		update=":messages zoneTable">
 		<f:selectItem itemLabel="---select speed limit----" itemValue="" />
-		<f:selectItems value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.distinctSpeedLimits}" 
-			var="speedLimit" itemLabel="#{speedLimit}" itemValue="#{speedLimit}" />
+		<f:selectItems value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.distinctSpeedLimits}" 
+			var="speedLimit" 
+			itemLabel="#{speedLimit}"
+			 itemValue="#{speedLimit}" />
+	</b:selectOneMenu>
+	
+	<b:selectOneMenu id="roadName" 
+		label="Select Road Name"
+		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.selectedRoadName}"
+		onchange="ajax:viewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.filterZones()"
+		update=":messages zoneTable">
+		<f:selectItem itemLabel="---select road name----" itemValue="" />
+		<f:selectItems value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.distinctRoadNames}" 
+			var="roadName" 
+			itemLabel="#{roadName}" 
+			itemValue="#{roadName}" />
 	</b:selectOneMenu>
 
 	<b:dataTable id="zoneTable" 
-		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitController.filteredZones}" var="item"
+		value="#{viewScheduledPhotoEnforcementZoneBySpeedLimitAndRoadNameController.filteredZones}" var="item"
 		paginated="false"
 		searching="false"
 	>

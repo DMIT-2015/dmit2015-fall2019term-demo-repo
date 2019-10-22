@@ -20,7 +20,7 @@ public class Region implements Serializable {
 	private int regionID;
 
 	@Column(name="RegionDescription")
-	private Object regionDescription;
+	private String regionDescription;
 
 	//bi-directional many-to-one association to Territory
 	@OneToMany(mappedBy="region")
@@ -37,11 +37,11 @@ public class Region implements Serializable {
 		this.regionID = regionID;
 	}
 
-	public Object getRegionDescription() {
+	public String getRegionDescription() {
 		return this.regionDescription;
 	}
 
-	public void setRegionDescription(Object regionDescription) {
+	public void setRegionDescription(String regionDescription) {
 		this.regionDescription = regionDescription;
 	}
 

@@ -29,12 +29,12 @@ public class OrderDetail implements Serializable {
 
 	//bi-directional many-to-one association to Order
 	@ManyToOne
-	@JoinColumn(name="OrderID")
+	@JoinColumn(name="OrderID", insertable = false, updatable = false)
 	private Order order;
 
 	//bi-directional many-to-one association to Product
 	@ManyToOne
-	@JoinColumn(name="ProductID")
+	@JoinColumn(name="ProductID", insertable = false, updatable = false)
 	private Product product;
 
 	public OrderDetail() {

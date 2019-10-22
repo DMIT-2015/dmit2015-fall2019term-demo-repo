@@ -25,10 +25,10 @@ public class Product implements Serializable {
 	private boolean discontinued;
 
 	@Column(name="ProductName")
-	private Object productName;
+	private String productName;
 
 	@Column(name="QuantityPerUnit")
-	private Object quantityPerUnit;
+	private String quantityPerUnit;
 
 	@Column(name="ReorderLevel")
 	private short reorderLevel;
@@ -75,19 +75,19 @@ public class Product implements Serializable {
 		this.discontinued = discontinued;
 	}
 
-	public Object getProductName() {
+	public String getProductName() {
 		return this.productName;
 	}
 
-	public void setProductName(Object productName) {
+	public void setProductName(String productName) {
 		this.productName = productName;
 	}
 
-	public Object getQuantityPerUnit() {
+	public String getQuantityPerUnit() {
 		return this.quantityPerUnit;
 	}
 
-	public void setQuantityPerUnit(Object quantityPerUnit) {
+	public void setQuantityPerUnit(String quantityPerUnit) {
 		this.quantityPerUnit = quantityPerUnit;
 	}
 
