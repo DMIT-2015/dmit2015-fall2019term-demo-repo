@@ -1,0 +1,39 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/northwind-jsf-template.xhtml">
+	
+	<ui:param name="title" value="New Shipper" />
+
+	<ui:define name="maincontent">
+		
+		<b:jumbotron>
+			<h1>New Shipper Details</h1>
+		</b:jumbotron>
+
+		<b:messages id="messages" />
+		
+		<b:form id="createForm">
+		
+			<ui:include src="/northwind/crud/shipper/detail.xhtml" />
+			
+			<b:commandButton value="Submit New"
+				look="primary"
+				iconAwesome="save"
+				action="#{shipperCRUDController.create()}"
+				update=":messages detailPanel" />
+		</b:form>
+		
+	</ui:define>
+
+</ui:composition>
