@@ -7,7 +7,21 @@
 >
 	<!-- JPA configuration here -->
 	<persistence-unit name="northwind-jpa-pu">
-		<jta-data-source>java:app/datasources/dmit2015-demo/demoDS</jta-data-source>
+		<jta-data-source>java:app/datasources/dmit2015-demo/northwindDS</jta-data-source>
+
+		<class>northwind.entity.Category</class>
+		<class>northwind.entity.Customer</class>
+		<class>northwind.entity.EmployeeTerritory</class>
+		<class>northwind.entity.EmployeeTerritoryPK</class>
+		<class>northwind.entity.Employee</class>
+		<class>northwind.entity.OrderDetail</class>
+		<class>northwind.entity.OrderDetailPK</class>
+		<class>northwind.entity.Order</class>
+		<class>northwind.entity.Product</class>
+		<class>northwind.entity.Region</class>
+		<class>northwind.entity.Shipper</class>
+		<class>northwind.entity.Supplier</class>
+		<class>northwind.entity.Territory</class>
 
 		<properties>
 			<!-- create-source: metadata, script, metadata-then-script, script-then-metadata  -->
@@ -16,9 +30,7 @@
 			<property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
 -->
 			<!-- database.action or scripts.action value: none, create, drop-and-create, drop -->
-<!--
-        <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
--->
+        <property name="javax.persistence.schema-generation.database.action" value="none"/>
 
 <!--
 			<property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
@@ -32,4 +44,14 @@
 
 	</persistence-unit>
 
+	<persistence-unit name="dmit2015-jpa-pu">
+		<jta-data-source>java:app/datasources/dmit2015-demo/dmit2015DS</jta-data-source>
+
+		<class>ca.edmonton.data.northwind.entity.ScheduledPhotoEnforcementZoneDetail</class>
+		
+		<properties>
+	        <property name="javax.persistence.schema-generation.database.action" value="none"/>
+		</properties>
+	</persistence-unit>
+	
 </persistence>

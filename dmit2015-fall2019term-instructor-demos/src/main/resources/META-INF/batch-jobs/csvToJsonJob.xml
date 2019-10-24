@@ -1,0 +1,17 @@
+<job id="csvToJsonJob" 
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee" 
+    version="1.0">
+    
+    <properties>
+    	<property name="input_file" value="/home/user2015/Desktop/Scheduled_Photo_Enforcement_Zone_Details_-_Map.csv" />
+    	<property name="output_file" value="/home/user2015/Desktop/Scheduled_Photo_Enforcement_Zone_Details.json" />
+    </properties> 
+     
+    <step id="step1">
+        <chunk item-count="5">
+            <reader ref="scheduledPhotoEnforcementZoneDetailBatchItemReader"/>
+            <processor ref="scheduledPhotoEnforcementZoneDetailBatchItemProcessor"/>
+            <writer ref="scheduledPhotoEnforcementZoneDetailBatchItemWriter"/>
+        </chunk>
+    </step>
+</job>
