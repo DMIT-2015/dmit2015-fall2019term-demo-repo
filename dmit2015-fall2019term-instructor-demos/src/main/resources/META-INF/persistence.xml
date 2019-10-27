@@ -5,7 +5,19 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd"
 	version="2.2"
 >
-	<!-- JPA configuration here -->
+	<persistence-unit name="dmit2015-jpa-pu">
+		<jta-data-source>java:app/datasources/dmit2015-demo/dmit2015DS</jta-data-source>
+
+		<class>ca.edmonton.data.ScheduledPhotoEnforcementZoneDetail</class>
+		
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+		
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
+		</properties>
+	</persistence-unit>
+
 	<persistence-unit name="northwind-jpa-pu">
 		<jta-data-source>java:app/datasources/dmit2015-demo/northwindDS</jta-data-source>
 
@@ -23,35 +35,16 @@
 		<class>northwind.entity.Supplier</class>
 		<class>northwind.entity.Territory</class>
 
+		<exclude-unlisted-classes>true</exclude-unlisted-classes>
+
 		<properties>
-			<!-- create-source: metadata, script, metadata-then-script, script-then-metadata  -->
-<!--
-			<property name="javax.persistence.schema-generation.create-source" value="metadata"/>
-			<property name="javax.persistence.schema-generation.drop-source" value="metadata"/>
--->
-			<!-- database.action or scripts.action value: none, create, drop-and-create, drop -->
-        <property name="javax.persistence.schema-generation.database.action" value="none"/>
-
-<!--
-			<property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
-   			<property name="javax.persistence.schema-generation.scripts.create-target" value="/home/user2015/Desktop/create-northwind.sqlserver.sql"/>
-            <property name="javax.persistence.schema-generation.scripts.drop-target" value="/home/user2015/Desktop/drop-northwind.sqlserver.sql"/>
--->
-
-<!-- 			<property name="javax.persistence.sql-load-script-source" value="META-INF/sql/data.sql" /> -->
+			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+	        <property name="javax.persistence.schema-generation.scripts.action" value="create"/>
+  			<property name="javax.persistence.schema-generation.scripts.create-target" value="/home/samwu/Desktop/create-northwind.sql"/>
 
 		</properties>
 
 	</persistence-unit>
 
-	<persistence-unit name="dmit2015-jpa-pu">
-		<jta-data-source>java:app/datasources/dmit2015-demo/dmit2015DS</jta-data-source>
-
-		<class>ca.edmonton.data.northwind.entity.ScheduledPhotoEnforcementZoneDetail</class>
-		
-		<properties>
-	        <property name="javax.persistence.schema-generation.database.action" value="none"/>
-		</properties>
-	</persistence-unit>
 	
 </persistence>
