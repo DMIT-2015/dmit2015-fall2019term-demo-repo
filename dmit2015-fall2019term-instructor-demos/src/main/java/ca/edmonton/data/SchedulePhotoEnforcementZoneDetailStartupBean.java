@@ -10,7 +10,7 @@ import javax.ejb.Startup;
 
 @Singleton
 @Startup
-public class SchedulePhotoEnforcementZoneDetailRegistry {
+public class SchedulePhotoEnforcementZoneDetailStartupBean {
 
 	@PostConstruct
 	public void init() {
