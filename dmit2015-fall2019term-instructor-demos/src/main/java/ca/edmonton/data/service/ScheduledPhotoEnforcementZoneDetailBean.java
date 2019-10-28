@@ -1,10 +1,12 @@
-package ca.edmonton.data;
+package ca.edmonton.data.service;
 
 import java.util.List;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import ca.edmonton.data.entity.ScheduledPhotoEnforcementZoneDetail;
 
 @Stateless
 public class ScheduledPhotoEnforcementZoneDetailBean {

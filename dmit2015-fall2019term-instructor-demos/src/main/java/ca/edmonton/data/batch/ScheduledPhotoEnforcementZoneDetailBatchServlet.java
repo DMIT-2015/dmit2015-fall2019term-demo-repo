@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.batch;
 
 import java.io.IOException;
 import java.io.PrintWriter;

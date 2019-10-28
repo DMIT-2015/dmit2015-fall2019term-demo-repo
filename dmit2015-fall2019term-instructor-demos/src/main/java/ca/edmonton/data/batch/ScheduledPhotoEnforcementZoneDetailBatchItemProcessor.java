@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.batch;
 
 import javax.batch.api.chunk.ItemProcessor;
 import javax.inject.Named;

@@ -8,7 +8,7 @@
 	<persistence-unit name="dmit2015-jpa-pu">
 		<jta-data-source>java:app/datasources/dmit2015-demo/dmit2015DS</jta-data-source>
 
-		<class>ca.edmonton.data.ScheduledPhotoEnforcementZoneDetail</class>
+		<class>ca.edmonton.data.entity.ScheduledPhotoEnforcementZoneDetail</class>
 		
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		
@@ -40,7 +40,8 @@
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
 	        <property name="javax.persistence.schema-generation.scripts.action" value="create"/>
-  			<property name="javax.persistence.schema-generation.scripts.create-target" value="/home/samwu/Desktop/create-northwind.sql"/>
+  			<property name="javax.persistence.schema-generation.scripts.create-target" 
+  				value="/home/user2015/Desktop/create-northwind.sql"/>
 
 		</properties>
 

@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.batch;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
@@ -12,6 +12,8 @@ import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
+import ca.edmonton.data.entity.ScheduledPhotoEnforcementZoneDetail;
 
 @Named
 public class ScheduledPhotoEnforcementZoneDetailBatchItemWriter extends AbstractItemWriter {

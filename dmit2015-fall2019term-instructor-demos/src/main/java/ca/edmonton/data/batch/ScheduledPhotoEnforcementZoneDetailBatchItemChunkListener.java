@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.batch;
 
 import javax.batch.api.chunk.listener.AbstractChunkListener;
 import javax.inject.Named;

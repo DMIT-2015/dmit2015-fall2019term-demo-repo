@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.web;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,6 +10,8 @@ import javax.inject.Named;
 import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Messages;
 
+import ca.edmonton.data.entity.ScheduledPhotoEnforcementZoneDetail;
+import ca.edmonton.data.service.ScheduledPhotoEnforcementZoneDetailBean;
 import lombok.Getter;
 
 @Named

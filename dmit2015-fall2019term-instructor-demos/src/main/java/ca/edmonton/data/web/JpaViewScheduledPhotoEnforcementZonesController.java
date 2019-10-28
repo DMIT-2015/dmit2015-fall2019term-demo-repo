@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.web;
 
 import java.util.List;
 
@@ -7,6 +7,8 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ca.edmonton.data.entity.ScheduledPhotoEnforcementZoneDetail;
+import ca.edmonton.data.service.ScheduledPhotoEnforcementZoneDetailBean;
 import lombok.Getter;
 
 @Named

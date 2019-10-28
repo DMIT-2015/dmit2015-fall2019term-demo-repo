@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.batch;
 
 import javax.batch.api.listener.AbstractJobListener;
 import javax.inject.Named;

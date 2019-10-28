@@ -1,4 +1,4 @@
-package ca.edmonton.data;
+package ca.edmonton.data.service;
 
 import javax.annotation.PostConstruct;
 import javax.batch.operations.JobOperator;
