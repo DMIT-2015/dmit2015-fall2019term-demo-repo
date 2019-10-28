@@ -39,4 +39,39 @@
 		<param-name>net.bootsfaces.blockUI</param-name>
 		<param-value>true</param-value>
 	</context-param>	
+	
+	<servlet>
+	    <servlet-name>H2Console</servlet-name>
+	    <servlet-class>org.h2.server.web.WebServlet</servlet-class>
+	    <!--
+	    <init-param>
+	        <param-name>webAllowOthers</param-name>
+	        <param-value></param-value>
+	    </init-param>
+	    <init-param>
+	        <param-name>trace</param-name>
+	        <param-value></param-value>
+	    </init-param>
+	    -->
+	    <load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+	    <servlet-name>H2Console</servlet-name>
+	    <url-pattern>/console/*</url-pattern>
+	</servlet-mapping>
+<!--
+<security-role>
+    <role-name>admin</role-name>
+</security-role>
+<security-constraint>
+    <web-resource-collection>
+        <web-resource-name>H2 Console</web-resource-name>
+        <url-pattern>/console/*</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+        <role-name>admin</role-name>
+    </auth-constraint>
+</security-constraint>
+-->
+
 </web-app>
