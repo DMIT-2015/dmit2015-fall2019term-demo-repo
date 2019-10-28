@@ -21,8 +21,8 @@ public class ScheduledPhotoEnforcementZoneDetailBatchItemWriter extends Abstract
 	@Inject
 	private JobContext jobContext;
 	
-	@PersistenceContext(unitName = "dmit2015-jpa-pu")
-	private EntityManager entityManager;
+//	@PersistenceContext(unitName = "dmit2015-jpa-pu")
+//	private EntityManager entityManager;
 	
 	@Override
 	@Transactional
@@ -37,18 +37,18 @@ public class ScheduledPhotoEnforcementZoneDetailBatchItemWriter extends Abstract
 				System.out.println("Writer " + jsonItem.toString());
 				writer.write(jsonItem.toString());
 				
-				ScheduledPhotoEnforcementZoneDetail zone = new ScheduledPhotoEnforcementZoneDetail();
-				zone.setSiteId(jsonItem.getInt("Site ID"));
-				zone.setRoadName(jsonItem.getString("Road Name"));
-				zone.setLocationDescription(jsonItem.getString("Location Description"));
-				zone.setDirection(jsonItem.getString("Direction"));
-				zone.setFromPoint(jsonItem.getString("From Point"));
-				zone.setToPoint(jsonItem.getString("To Point"));
-				zone.setSpeedLimit(jsonItem.getInt("Speed Limit"));
-				zone.setLatitude(jsonItem.getJsonNumber("Latitude").doubleValue());
-				zone.setLongitude(jsonItem.getJsonNumber("Longitude").doubleValue());
-				
-				entityManager.persist(zone);
+//				ScheduledPhotoEnforcementZoneDetail zone = new ScheduledPhotoEnforcementZoneDetail();
+//				zone.setSiteId(jsonItem.getInt("Site ID"));
+//				zone.setRoadName(jsonItem.getString("Road Name"));
+//				zone.setLocationDescription(jsonItem.getString("Location Description"));
+//				zone.setDirection(jsonItem.getString("Direction"));
+//				zone.setFromPoint(jsonItem.getString("From Point"));
+//				zone.setToPoint(jsonItem.getString("To Point"));
+//				zone.setSpeedLimit(jsonItem.getInt("Speed Limit"));
+//				zone.setLatitude(jsonItem.getJsonNumber("Latitude").doubleValue());
+//				zone.setLongitude(jsonItem.getJsonNumber("Longitude").doubleValue());
+//				
+//				entityManager.persist(zone);
 			}
 			writer.flush();
 		} catch(Exception e) {

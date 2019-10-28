@@ -11,7 +11,7 @@
     	<listener ref="scheduledPhotoEnforcementZoneDetailBatchItemJobListener" />
     </listeners>
      
-    <step id="step1">
+    <step id="step1" next="step2">
     	<listeners>
     		<listener ref="scheduledPhotoEnforcementZoneDetailBatchItemStepListener" />
     		<listener ref="scheduledPhotoEnforcementZoneDetailBatchItemChunkListener" />
@@ -22,5 +22,9 @@
             <processor ref="scheduledPhotoEnforcementZoneDetailBatchItemProcessor"/>
             <writer ref="scheduledPhotoEnforcementZoneDetailBatchItemWriter"/>
         </chunk>
+    </step>
+    
+    <step id="step2">
+    	<batchlet ref="scheduledPhotoEnforcementZoneDetailDatabaseBatchlet" />
     </step>
 </job>
