@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import ca.edmonton.data.entity.ScheduledPhotoEnforcementZoneDetail;
+import ca.edmonton.data.pojo.ZoneReport;
 
 @Stateless
 public class ScheduledPhotoEnforcementZoneDetailBean {
@@ -77,5 +78,14 @@ public class ScheduledPhotoEnforcementZoneDetailBean {
 				.getResultList();
 	}
 	
+	public List<ZoneReport> findZoneReport() {
+		return entityManager.createQuery(
+				"SELECT new ca.edmonton.data.pojo.ZoneReport(z.roadName, z.speedLimit) "
+				+ " FROM ScheduledPhotoEnforcementZoneDetail z "
+				+ " GROUP BY z.roadName, z.speedLimit "
+				+ " ORDER BY z.roadName "
+				, ZoneReport.class)
+				.getResultList();
+	}
 	
 }
