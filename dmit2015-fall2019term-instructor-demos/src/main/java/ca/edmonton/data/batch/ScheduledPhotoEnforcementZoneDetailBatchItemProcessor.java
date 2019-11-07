@@ -5,6 +5,8 @@ import javax.inject.Named;
 import javax.json.Json;
 import javax.json.JsonObject;
 
+import org.apache.commons.lang3.StringUtils;
+
 @Named
 public class ScheduledPhotoEnforcementZoneDetailBatchItemProcessor implements ItemProcessor {
 
@@ -20,7 +22,7 @@ public class ScheduledPhotoEnforcementZoneDetailBatchItemProcessor implements It
 		Integer siteId = Integer.valueOf(values[0]);
 		String roadName = values[1];
 		String locationDescription = values[2];
-		String direction = values[3];
+		String direction = StringUtils.isBlank(values[3]) ?  "" : values[3];
 		String fromPoint = values[4];
 		String toPoint = values[5];
 		int speedLimit = Integer.parseInt(values[6]);
