@@ -39,9 +39,11 @@
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+<!-- 
 	        <property name="javax.persistence.schema-generation.scripts.action" value="create"/>
   			<property name="javax.persistence.schema-generation.scripts.create-target" 
   				value="/home/user2015/Desktop/create-northwind.sql"/>
+ -->			
 
 		</properties>
 

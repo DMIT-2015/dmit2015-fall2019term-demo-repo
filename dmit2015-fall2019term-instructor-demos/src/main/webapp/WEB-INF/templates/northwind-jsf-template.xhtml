@@ -32,8 +32,12 @@
     <b:navBar brand="Northwind Traders" brandHref="#{request.contextPath}/northwind/index.xhtml" fixed="top">
     	<b:navbarLinks>
 			<b:dropMenu value="Shippers">
-            	<b:navLink value="Create" href="#{request.contextPath}/northwind/crud/shipper/create.xhtml"></b:navLink>
-            	<b:navLink value="List" href="#{request.contextPath}/northwind/crud/shipper/list.xhtml"></b:navLink>
+            	<b:navLink value="Create" href="#{request.contextPath}/northwind/shipper/create.xhtml"></b:navLink>
+            	<b:navLink value="List" href="#{request.contextPath}/northwind/shipper/list.xhtml"></b:navLink>
+        	</b:dropMenu>
+			<b:dropMenu value="Categories">
+            	<b:navLink value="Create" href="#{request.contextPath}/northwind/category/create.xhtml"></b:navLink>
+            	<b:navLink value="List" href="#{request.contextPath}/northwind/category/list.xhtml"></b:navLink>
         	</b:dropMenu>
         </b:navbarLinks>
         

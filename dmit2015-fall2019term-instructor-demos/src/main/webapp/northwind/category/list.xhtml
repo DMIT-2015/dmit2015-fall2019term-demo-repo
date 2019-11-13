@@ -13,26 +13,35 @@
 	xmlns:b="http://bootsfaces.net/ui"
 	template="/WEB-INF/templates/northwind-jsf-template.xhtml">
 	
-	<ui:param name="title" value="New Shipper" />
+	<ui:param name="title" value="Category List" />
 
 	<ui:define name="maincontent">
 		
-		<b:jumbotron>
-			<h1>New Shipper Details</h1>
-		</b:jumbotron>
-
+		<h1>Categorys listing</h1>
 		<b:messages id="messages" />
-		
-		<b:form id="createForm">
-		
-			<ui:include src="/northwind/crud/shipper/detail.xhtml" />
-			
-			<b:commandButton value="Submit New"
-				look="primary"
-				iconAwesome="save"
-				action="#{shipperCRUDController.create()}"
-				update=":messages detailPanel" />
+		<b:form>
+			<b:dataTable id="datatable" 
+				value="#{categoryCRUDController.categorys}"
+				var="item">
+				
+				<b:dataTableColumn label="CategoryID" value="#{item.categoryID}" />	
+
+				<b:dataTableColumn label="Name" value="#{item.categoryName}" />	
+
+				<b:dataTableColumn label="Phone" value="#{item.description}" />	
+				
+				<b:dataTableColumn label="Action">					
+					<b:link id="editLink" outcome="edit"  icon-awesome="edit" icon-size="lg">
+						<f:param name="editId" value="#{item.categoryID}" />
+						edit
+					</b:link>
+				</b:dataTableColumn>
+				
+			</b:dataTable>
 		</b:form>
+
+		
+		
 		
 	</ui:define>
 
