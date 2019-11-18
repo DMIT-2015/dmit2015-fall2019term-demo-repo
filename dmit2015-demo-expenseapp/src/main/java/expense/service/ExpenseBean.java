@@ -2,7 +2,12 @@ package expense.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
+import javax.ejb.Timeout;
+import javax.ejb.Timer;
+import javax.ejb.TimerConfig;
+import javax.ejb.TimerService;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -10,12 +15,29 @@ import expense.entity.Expense;
 
 @Stateless
 public class ExpenseBean {
+	
+	@Resource
+	TimerService timerService;
+	
+	@Timeout
+	public void sendNotification(Timer timer) {
+		Expense currentExpense = (Expense) timer.getInfo();
+		System.out.println("New Transaction Notification");
+		System.out.println("Description: " + currentExpense.getDescription());
+		System.out.println("Amount: " + currentExpense.getAmount());
+		System.out.println("Date: " + currentExpense.getDate().toString());
+	}
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	public void add(Expense newExpense) {
 		entityManager.persist(newExpense);
+		
+		// send a notification in 5000ms
+		TimerConfig timerConfig = new TimerConfig();
+		timerConfig.setInfo(newExpense);
+		timerService.createSingleActionTimer(5000, timerConfig);
 	}
 	
 	public void update(Expense existingExpense) {
