@@ -1,6 +1,8 @@
 package expense.service;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
@@ -8,6 +10,13 @@ import javax.ejb.Timeout;
 import javax.ejb.Timer;
 import javax.ejb.TimerConfig;
 import javax.ejb.TimerService;
+import javax.inject.Inject;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -16,6 +25,12 @@ import expense.entity.Expense;
 @Stateless
 public class ExpenseBean {
 	
+	@Inject
+	private Logger logger;
+	
+//	@Resource(name = "java:jboss:/mail/yahoo")
+//	private Session session;
+		
 	@Resource
 	TimerService timerService;
 	
@@ -26,6 +41,16 @@ public class ExpenseBean {
 		System.out.println("Description: " + currentExpense.getDescription());
 		System.out.println("Amount: " + currentExpense.getAmount());
 		System.out.println("Date: " + currentExpense.getDate().toString());
+		
+//		try {
+//			Message message = new MimeMessage(session);
+//			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse("swu@nait.ca"));
+//			message.setSubject("New Expense Notification");
+//			message.setText(currentExpense.toString());
+//			Transport.send(message);
+//		} catch(MessagingException e) {
+//			logger.warning("Cannot send mail with exception: " + e.getMessage());
+//		}
 	}
 
 	@PersistenceContext
@@ -34,10 +59,10 @@ public class ExpenseBean {
 	public void add(Expense newExpense) {
 		entityManager.persist(newExpense);
 		
-		// send a notification in 5000ms
+		// send a notification in 30000ms (30 seconds)
 		TimerConfig timerConfig = new TimerConfig();
 		timerConfig.setInfo(newExpense);
-		timerService.createSingleActionTimer(5000, timerConfig);
+		timerService.createSingleActionTimer(30000, timerConfig);
 	}
 	
 	public void update(Expense existingExpense) {
@@ -51,6 +76,17 @@ public class ExpenseBean {
 		}
 		entityManager.remove(existingExpense);
 		entityManager.flush();
+		
+		// remove timer associated with existingExpense
+		Collection<Timer> activeTimers = timerService.getAllTimers();
+		for(Timer currentTimer : activeTimers) {
+			Expense currentExpense = (Expense) currentTimer.getInfo();
+			if (currentExpense.getId().equals(existingExpense.getId())) {
+				currentTimer.cancel();
+				break;
+			}
+		}
+		
 	}
 	
 	public void remove(Long id) {

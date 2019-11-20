@@ -14,7 +14,7 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>bootstrap</param-value>
 	</context-param>
-	
+
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
@@ -23,24 +23,52 @@
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
-	
+
 	<servlet>
-	    <servlet-name>H2Console</servlet-name>
-	    <servlet-class>org.h2.server.web.WebServlet</servlet-class>
-	    <!--
-	    <init-param>
-	        <param-name>webAllowOthers</param-name>
-	        <param-value></param-value>
-	    </init-param>
-	    <init-param>
-	        <param-name>trace</param-name>
-	        <param-value></param-value>
-	    </init-param>
-	    -->
-	    <load-on-startup>1</load-on-startup>
+		<servlet-name>H2Console</servlet-name>
+		<servlet-class>org.h2.server.web.WebServlet</servlet-class>
+		<!-- <init-param> <param-name>webAllowOthers</param-name> <param-value></param-value> 
+			</init-param> <init-param> <param-name>trace</param-name> <param-value></param-value> 
+			</init-param> -->
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 	<servlet-mapping>
-	    <servlet-name>H2Console</servlet-name>
-	    <url-pattern>/h2-console/*</url-pattern>
+		<servlet-name>H2Console</servlet-name>
+		<url-pattern>/h2-console/*</url-pattern>
 	</servlet-mapping>
+
+
+	<security-constraint>
+		<display-name>Use HTTPS only</display-name>
+		<web-resource-collection>
+			<web-resource-name>sslResources</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Restricted User Resources</web-resource-name>
+			<url-pattern>/expense/create.xhtml</url-pattern>
+			<url-pattern>/expense/detail.xhtml</url-pattern>
+			<url-pattern>/expense/edit.xhtml</url-pattern>
+			<url-pattern>/h2-console/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>USER</role-name>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-role>
+		<role-name>USER</role-name>
+	</security-role>
+	<security-role>
+		<role-name>ADMIN</role-name>
+	</security-role>
+
+
 </web-app>
