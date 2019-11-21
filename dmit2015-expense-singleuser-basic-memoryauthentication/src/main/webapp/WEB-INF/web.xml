@@ -53,30 +53,30 @@
 	</servlet-mapping>
 
 
-	<security-constraint>
-		<display-name>Use HTTPS only</display-name>
-		<web-resource-collection>
-			<web-resource-name>sslResources</web-resource-name>
-			<url-pattern>/*</url-pattern>
-		</web-resource-collection>
-		<user-data-constraint>
-			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
-		</user-data-constraint>
-	</security-constraint>
+<!-- 	<security-constraint> -->
+<!-- 		<display-name>Use HTTPS only</display-name> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>sslResources</web-resource-name> -->
+<!-- 			<url-pattern>/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<user-data-constraint> -->
+<!-- 			<transport-guarantee>CONFIDENTIAL</transport-guarantee> -->
+<!-- 		</user-data-constraint> -->
+<!-- 	</security-constraint> -->
 
-	<security-constraint>
-		<web-resource-collection>
-			<web-resource-name>Restricted User Resources</web-resource-name>
-			<url-pattern>/expense/create.xhtml</url-pattern>
-			<url-pattern>/expense/detail.xhtml</url-pattern>
-			<url-pattern>/expense/edit.xhtml</url-pattern>
-			<url-pattern>/h2-console/*</url-pattern>
-		</web-resource-collection>
-		<auth-constraint>
-			<role-name>USER</role-name>
-			<role-name>ADMIN</role-name>
-		</auth-constraint>
-	</security-constraint>
+<!-- 	<security-constraint> -->
+<!-- 		<web-resource-collection> -->
+<!-- 			<web-resource-name>Restricted User Resources</web-resource-name> -->
+<!-- 			<url-pattern>/expense/create.xhtml</url-pattern> -->
+<!-- 			<url-pattern>/expense/detail.xhtml</url-pattern> -->
+<!-- 			<url-pattern>/expense/edit.xhtml</url-pattern> -->
+<!-- 			<url-pattern>/h2-console/*</url-pattern> -->
+<!-- 		</web-resource-collection> -->
+<!-- 		<auth-constraint> -->
+<!-- 			<role-name>USER</role-name> -->
+<!-- 			<role-name>ADMIN</role-name> -->
+<!-- 		</auth-constraint> -->
+<!-- 	</security-constraint> -->
 
 	<security-role>
 		<role-name>USER</role-name>

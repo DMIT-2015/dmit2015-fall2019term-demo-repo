@@ -3,7 +3,6 @@ package expense.service;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
-import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJBAccessException;
 import javax.ejb.SessionContext;
 import javax.inject.Inject;
@@ -12,7 +11,6 @@ import javax.interceptor.InvocationContext;
 
 import org.omnifaces.util.Faces;
 
-@DeclareRoles({"USER","ADMIN"})
 public class ExpenseSecurityInterceptor {
 	
 	@Inject
