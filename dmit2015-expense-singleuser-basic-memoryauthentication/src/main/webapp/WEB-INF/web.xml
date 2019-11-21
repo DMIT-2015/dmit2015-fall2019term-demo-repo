@@ -14,7 +14,7 @@
 		<param-name>primefaces.THEME</param-name>
 		<param-value>bootstrap</param-value>
 	</context-param>
-
+	
 	<servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
@@ -38,7 +38,7 @@
 		<param-name>net.bootsfaces.blockUI</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
+		
 	<servlet>
 		<servlet-name>H2Console</servlet-name>
 		<servlet-class>org.h2.server.web.WebServlet</servlet-class>
@@ -84,6 +84,5 @@
 	<security-role>
 		<role-name>ADMIN</role-name>
 	</security-role>
-
-
+	
 </web-app>
