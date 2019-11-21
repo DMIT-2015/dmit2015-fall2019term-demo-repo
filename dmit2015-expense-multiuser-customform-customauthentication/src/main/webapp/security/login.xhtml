@@ -1,0 +1,45 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-template.xhtml">
+	
+	<ui:param name="title" value="Login Page" />
+
+	<ui:define name="maincontent">
+		<b:jumbotron>
+			<h1>Sign in</h1>
+		</b:jumbotron>		
+		
+		<c:if test="#{not empty param.error}">
+			<b:alert severity="danger">Invalid login credentials</b:alert>
+		</c:if>
+
+		<form action="#{request.contextPath}/j_security_check" method="POST" class="form-signin" name="loginForm">
+            <h2 class="form-signin-heading">Please sign in</h2>
+            <b:inputText id="j_username" name="j_username" placeholder="username" >
+                <f:facet name="prepend">
+                    <b:icon name="user" />
+                </f:facet>
+                <b:focus />
+            </b:inputText>
+            <b:inputSecret id="j_password" name="j_password" placeholder="Password" type="password">
+                <f:facet name="prepend">
+                    <b:iconAwesome name="key" />
+                </f:facet>
+            </b:inputSecret>
+            <h:commandButton styleClass="btn btn-primary btn-block" value="Sign In" icon="log-in" size="lg" type="submit"/>
+        </form>
+		
+	</ui:define>
+
+</ui:composition>
