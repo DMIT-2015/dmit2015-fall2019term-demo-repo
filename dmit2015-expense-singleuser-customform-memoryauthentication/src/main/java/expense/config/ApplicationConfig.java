@@ -27,9 +27,9 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
 
 @DataSourceDefinitions({
 	@DataSourceDefinition(
-		name = "java:app/datasources/dmit2015-demo-expenseapp/h2DS", 
+		name = "java:app/datasources/dmit2015-expenseapp/h2DS", 
 		className = "org.h2.jdbcx.JdbcDataSource", 
-		url = "jdbc:h2:mem:expensedb", 
+		url = "jdbc:h2:file:~/singleuser-expensedb", 
 		user = "sa", 
 		password = "sa"), 
 })

@@ -5,7 +5,7 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
 	
 	<persistence-unit name="h2-pu">
-		<jta-data-source>java:app/datasources/dmit2015-demo-expenseapp/h2DS</jta-data-source>
+		<jta-data-source>java:app/datasources/dmit2015-expenseapp/h2DS</jta-data-source>
 
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>

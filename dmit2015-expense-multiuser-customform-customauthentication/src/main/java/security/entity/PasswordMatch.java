@@ -15,7 +15,7 @@ import javax.validation.Payload;
 @Documented
 public @interface PasswordMatch {
 
-	String message() default "{security.entity.LoginUser.password}";
+	String message() default "Password fields must match";
 	
 	Class<?>[] groups() default { };
 	

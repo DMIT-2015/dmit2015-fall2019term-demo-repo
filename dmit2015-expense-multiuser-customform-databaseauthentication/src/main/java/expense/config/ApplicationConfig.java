@@ -27,7 +27,7 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
 })
 
 @DatabaseIdentityStoreDefinition(
-	dataSourceLookup="java:app/datasources/dmit2015-expense-multiuser-customform-databaseauthentication/h2DS",
+	dataSourceLookup="java:app/datasources/dmit2015-expenseapp/h2DS",
 	callerQuery="SELECT password FROM LoginUser WHERE username = ?",
 	groupsQuery="SELECT g.groupname FROM LoginUser u, LoginUserGroup ug, LoginGroup g WHERE u.username = ? AND u.id = ug.userid AND ug.groupid = g.id",
 	priority = 5
@@ -35,9 +35,9 @@ import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefi
 
 @DataSourceDefinitions({
 	@DataSourceDefinition(
-		name = "java:app/datasources/dmit2015-expense-multiuser-customform-databaseauthentication/h2DS", 
+		name = "java:app/datasources/dmit2015-expenseapp/h2DS", 
 		className = "org.h2.jdbcx.JdbcDataSource", 
-		url = "jdbc:h2:mem:expensedb", 
+		url = "jdbc:h2:file:~/multiuser-expensedb", 
 		user = "sa", 
 		password = "sa"), 
 })
