@@ -1,16 +1,41 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
-	xmlns:of="http://omnifaces.org/functions">
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-template.xhtml">
+	
+	<ui:param name="title" value="Expense Home" />
 
-<h:head>
-	<title>Hello World JSF 2.3</title>
-</h:head>
+	<ui:define name="maincontent">
+		
+		<b:jumbotron>
+			<h1>Expense Home</h1>
+		</b:jumbotron>
 
-<h:body>
-	<p:outputPanel style="display:block">
-		<h3 style="text-align: center">#{sampleBean.message}</h3>
-	</p:outputPanel>
-</h:body>
-</html>
+		<p>This application is used to track your expenses</p>
+		
+		<c:if test="#{not empty request.userPrincipal}">
+			<p>Logged-in as #{request.userPrincipal.name}</p>
+		</c:if>
+	
+		<c:if test="#{empty request.userPrincipal}">
+			<h:form>
+				<h:button value="Login" outcome="/security/customLogin">
+					<f:param name="new" value="true" />
+				</h:button>
+			</h:form>
+		</c:if>
+		
+		
+	</ui:define>
+
+</ui:composition>

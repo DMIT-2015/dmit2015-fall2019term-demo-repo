@@ -1,0 +1,46 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-template.xhtml">
+	
+	<ui:param name="title" value="New Login User" />
+
+	<ui:define name="maincontent">
+		
+		<b:jumbotron>
+			<h1>New Login User</h1>
+		</b:jumbotron>
+
+		<b:messages id="messages" />
+		
+		<b:form id="createForm" horizontal="true">
+		
+			<ui:include src="/security/LoginUser/detail.xhtml" />
+			
+			<b:commandButton value="Save"
+				look="primary"
+				iconAwesome="save"
+				action="#{loginUserCRUDController.create()}"
+				update=":messages detailPanel" />
+				
+			<f:validateWholeBean value="#{loginUserDetail}"   />	
+
+<f:verbatim>
+			<o:validateBean value="#{loginUserDetail}" />	
+</f:verbatim>			
+
+		</b:form>
+		
+	</ui:define>
+
+</ui:composition>

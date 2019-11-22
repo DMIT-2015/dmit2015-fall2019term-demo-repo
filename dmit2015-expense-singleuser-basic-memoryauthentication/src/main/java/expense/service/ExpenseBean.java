@@ -1,5 +1,6 @@
 package expense.service;
 
+import java.io.InputStream;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
@@ -35,6 +36,11 @@ public class ExpenseBean {
 		System.out.println("Amount: " + currentExpense.getAmount());
 		System.out.println("Date: " + currentExpense.getDate().toString());
 		
+//		InputStream inputStream = getClass().getResourceAsStream("/application.properties");
+//		if (inputStream == null)
+//			System.out.println("No input file");
+//		else
+//			System.out.println("Found input file");	
 	}
 
 	@PersistenceContext

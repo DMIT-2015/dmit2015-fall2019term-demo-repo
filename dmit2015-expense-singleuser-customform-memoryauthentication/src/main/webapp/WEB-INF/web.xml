@@ -23,4 +23,99 @@
 	<welcome-file-list>
 		<welcome-file>index.xhtml</welcome-file>
 	</welcome-file-list>
+
+	<!-- BootsFaces Theme Usage -->
+	<context-param>
+		<param-name>BootsFaces_USETHEME</param-name>
+		<param-value>default</param-value>
+	</context-param>
+	<context-param>
+		<param-name>BootsFaces_THEME</param-name>
+		<param-value>#{theme.currentTheme}</param-value>
+	</context-param>
+	<!-- Activates the waitcursor and the double-click protection -->
+	<context-param>
+		<param-name>net.bootsfaces.blockUI</param-name>
+		<param-value>true</param-value>
+	</context-param>
+		
+	<servlet>
+		<servlet-name>H2Console</servlet-name>
+		<servlet-class>org.h2.server.web.WebServlet</servlet-class>
+		<!-- <init-param> <param-name>webAllowOthers</param-name> <param-value></param-value> 
+			</init-param> <init-param> <param-name>trace</param-name> <param-value></param-value> 
+			</init-param> -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>H2Console</servlet-name>
+		<url-pattern>/h2-console/*</url-pattern>
+	</servlet-mapping>
+
+<!--
+	When deploying on Wildfly, you must disable HTTP/2 support at it conflicts with Java EE 8 SSL
+	
+	1. Start the Wildfly server either from Eclipse or from a Terminal using the command $JBOSS_HOME/bin/standalone.sh
+	2. Open a Terminal session and type:
+	
+		$JBOSS_HOME/bin/jboss-cli.sh
+		connect
+		/subsystem=undertow/server=default-server/https-listener=https:write-attribute(name=enable-http2,value=false)  
+		quit		
+ -->
+	 
+	<security-constraint>
+		<display-name>Use HTTPS only</display-name>
+		<web-resource-collection>
+			<web-resource-name>sslResources</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Restricted User Resources</web-resource-name>
+			<url-pattern>/expense/create.xhtml</url-pattern>
+			<url-pattern>/expense/detail.xhtml</url-pattern>
+			<url-pattern>/expense/edit.xhtml</url-pattern>
+			<url-pattern>/h2-console/*</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>USER</role-name>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-role>
+		<role-name>USER</role-name>
+	</security-role>
+	<security-role>
+		<role-name>ADMIN</role-name>
+	</security-role>
+	
+		<!-- Error pages -->
+	<error-page>
+		<error-code>401</error-code>
+		<location>/errorpages/401.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>403</error-code>
+		<location>/errorpages/403.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/errorpages/404.xhtml</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/errorpages/500.xhtml</location>
+	</error-page>
+	<error-page>
+		<exception-type>javax.faces.application.ViewExpiredException</exception-type>
+		<location>/errorpages/expired.xhtml</location>
+	</error-page>
+	
 </web-app>

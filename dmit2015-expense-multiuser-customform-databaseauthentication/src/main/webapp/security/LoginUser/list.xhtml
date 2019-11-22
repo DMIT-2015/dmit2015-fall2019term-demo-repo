@@ -1,0 +1,53 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-template.xhtml">
+	
+	<ui:param name="title" value="List Login Users" />
+
+	<ui:define name="maincontent">
+		
+		<b:jumbotron>
+			<h1>List Login Users</h1>	
+		</b:jumbotron>
+
+		<b:messages id="messages" />
+		
+		<b:form>
+			<b:dataTable id="groupsTable"
+				value="#{loginUserCRUDController.loginUsers}"
+				var="item">
+				
+				<b:dataTableColumn label="ID" value="#{item.id}" />
+				
+				<b:dataTableColumn label="Username" value="#{item.username}" />
+
+				<b:dataTableColumn label="Groups">
+					<ui:repeat var="group" value="#{item.groups}">
+						<h:outputText value="#{group.groupname}," />
+					</ui:repeat>
+				</b:dataTableColumn>
+			
+				<b:dataTableColumn label="Action">					
+					<b:link id="editLink" outcome="edit"  icon-awesome="edit" icon-size="lg">
+						<f:param name="editId" value="#{item.id}" />
+						edit
+					</b:link>
+				</b:dataTableColumn>
+			</b:dataTable>
+			
+		</b:form>		
+
+	</ui:define>
+
+</ui:composition>

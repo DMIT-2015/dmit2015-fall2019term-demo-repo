@@ -1,0 +1,60 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:f5="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+	template="/WEB-INF/templates/bootsfaces-template.xhtml">
+	
+	<ui:param name="title" value="Custom Login Page" />
+
+	<ui:define name="maincontent">
+
+		<c:if test="#{not empty request.userPrincipal}">
+			<p>Logged-in as #{request.userPrincipal}</p>
+		</c:if>
+	
+		<c:if test="#{empty request.userPrincipal}">
+		
+			<b:jumbotron>
+				<h1>Sign in</h1>
+			</b:jumbotron>		
+		
+			<c:if test="#{param.error != null}">
+				<b:alert severity="danger">Invalid login credentials</b:alert>
+			</c:if>
+		
+			<b:messages id="messages" />
+			
+			<b:form name="loginForm">
+	            <h2 class="form-signin-heading">Please sign in</h2>
+	            <b:inputText id="username" label="User Name" placeholder="username" 
+	            	value="#{login.username}">
+	                <f:facet name="prepend">
+	                    <b:icon name="user" />
+	                </f:facet>
+	            </b:inputText>
+	            
+	            <b:inputSecret id="password" label="Password" placeholder="Password" type="password"
+	            	value="#{login.password}">
+	                <f:facet name="prepend">
+	                    <b:iconAwesome name="key" />
+	                </f:facet>
+	            </b:inputSecret>
+	            
+	            <b:commandButton value="Login" action="#{login.submit()}"  icon="log-in" />
+
+	        </b:form>
+        
+        </c:if>
+	        
+	</ui:define>
+
+</ui:composition>
