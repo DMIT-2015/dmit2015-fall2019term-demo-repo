@@ -47,7 +47,8 @@
 	                
 	        <h:form style="display:inline" styleClass="form-inline">
 	        
-	        	<h:commandLink value="Logout #{request.userPrincipal.name}" action="#{logout.submit()}" 
+	        	<h:commandLink value="Logout #{login.firstName} #{login.lastName}" 
+	        		action="#{logout.submit()}" 
 	       			rendered="#{not empty request.userPrincipal}">
 	       		</h:commandLink>	        
 	        
