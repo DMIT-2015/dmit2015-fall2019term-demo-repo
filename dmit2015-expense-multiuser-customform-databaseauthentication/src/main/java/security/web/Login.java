@@ -57,13 +57,14 @@ public class Login implements Serializable {
 				break;
 			case SEND_FAILURE:
 				loginAttempts += 1;
-				Messages.addGlobalError("Login failed. Incorrect login credentaials.");
+				Messages.addGlobalError("Login failed. Incorrect login credentials.");
 				Messages.addGlobalError("Login attempt #{0}", loginAttempts);
 				if (loginAttempts >= MAX_ATTEMPTS_ALLOWED) {
 					Messages.addGlobalFatal("You {0} are banned from this site", username);
 				}
 				break;
 			case SUCCESS:
+				Faces.getFlash().setKeepMessages(true);
 				Messages.addFlashGlobalInfo("Login succeed");
 				Faces.redirect(Faces.getRequestContextPath() + "/index.xhtml");		// added for Caller-Initiated Authentication
 				break;

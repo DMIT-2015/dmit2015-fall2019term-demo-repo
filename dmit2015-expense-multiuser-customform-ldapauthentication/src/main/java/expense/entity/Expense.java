@@ -41,4 +41,5 @@ public class Expense implements Serializable {
 	@Column(nullable = false)
 	@NotBlank(message = "Username is required")
 	private String username;
+
 }
