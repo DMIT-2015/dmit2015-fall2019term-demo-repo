@@ -3,16 +3,12 @@ package security.service;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
-import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJBAccessException;
 import javax.ejb.SessionContext;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
-import org.omnifaces.util.Faces;
-
-@DeclareRoles({"DEVELOPER","USER","ADMIN"})
 public class LoginGroupSecurityInterceptor {
 
 	@Inject
@@ -27,14 +23,15 @@ public class LoginGroupSecurityInterceptor {
 		logger.info("Intercepting invoke to method: " + methodName);
 		
 		if (methodName.matches("^delete.*$") || methodName.matches("^update.*$") || methodName.matches("^list.*$") || methodName.matches("^add.*$")) {
-			if (!sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString()) && !sessionContext.isCallerInRole(SecurityRole.ADMIN.toString())) {
-				String systemMessage = String.format("Unauthorized access to method: %s from IP %s and user %s", methodName, Faces.getRemoteAddr(), Faces.getRemoteUser());			
+			boolean isInDeveloperRole = sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString());
+			boolean isInAdminRole = sessionContext.isCallerInRole(SecurityRole.ADMIN.toString());
+			if (!isInDeveloperRole && !isInAdminRole) {
+				String username = sessionContext.getCallerPrincipal().getName();
+				String systemMessage = String.format("Unauthorized access to method \"%s\" from username \"%s\".", methodName, username);			
 				logger.warning(systemMessage);
-				
-				String userMessage = String.format("Access denied! You do not have permission to execute this method");
+				String userMessage = String.format("Access denied! User \"%s\" do not have permission to execute this method", username);
 				throw new EJBAccessException(userMessage);
-			}
-			
+			}			
 		} 
 		
 		Object result = context.proceed();

@@ -3,16 +3,14 @@ package security.service;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
-import javax.annotation.security.DeclareRoles;
 import javax.ejb.EJBAccessException;
 import javax.ejb.SessionContext;
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.InvocationContext;
 
-import org.omnifaces.util.Faces;
+import security.entity.LoginUser;
 
-@DeclareRoles({"DEVELOPER","USER","ADMIN"})
 public class LoginUserSecurityInterceptor {
 	
 	@Inject
@@ -27,24 +25,37 @@ public class LoginUserSecurityInterceptor {
 		logger.info("Intercepting invoke to method: " + methodName);
 		
 		if (methodName.matches("^delete.*$") || methodName.matches("^list.*$")) {
-			if (!sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString())) {
-				String systemMessage = String.format("Unauthorized access to method: %s from IP %s and user %s", methodName, Faces.getRemoteAddr(), Faces.getRemoteUser());			
+			boolean isInDeveloperRole = sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString());
+			boolean isInAdminRole = sessionContext.isCallerInRole(SecurityRole.ADMIN.toString());
+			if (!isInDeveloperRole && !isInAdminRole) {
+				String username = sessionContext.getCallerPrincipal().getName();
+				String systemMessage = String.format("Unauthorized access to method \"%s\" from username \"%s\".", methodName, username);			
 				logger.warning(systemMessage);
-				
-				String message = String.format("Access denied! You do not have permission to execute this method");
-				logger.warning(message);
-				throw new EJBAccessException(message);
+				String userMessage = String.format("Access denied! User \"%s\" do not have permission to execute this method", username);
+				throw new EJBAccessException(userMessage);
 			}			
-		} else if (methodName.matches("^update.*$") || methodName.matches("changePassword")) {
-			if (!sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString()) && !sessionContext.isCallerInRole(SecurityRole.ADMIN.toString()) && !sessionContext.isCallerInRole(SecurityRole.USER.toString())) {
-				String systemMessage = String.format("Unauthorized access to method: %s from IP %s and user %s", methodName, Faces.getRemoteAddr(), Faces.getRemoteUser());			
+		} else if (methodName.matches("^update.*$")) {
+			boolean isInUserRole = sessionContext.isCallerInRole(SecurityRole.USER.toString());
+			if (isInUserRole) {
+				LoginUser existingUser = (LoginUser) context.getParameters()[0];
+				String username = sessionContext.getCallerPrincipal().getName();
+				if (!existingUser.getUsername().equals(username)) {
+					String systemMessage = String.format("Unauthorized access to method \"%s\" from username \"%s\".", methodName, username);			
+					logger.warning(systemMessage);
+					String userMessage = String.format("Access denied! You do not have permission to update information on other users", username);
+					throw new EJBAccessException(userMessage);					
+				}
+			}			
+		} else if (methodName.matches("changePassword")) {
+			String username = sessionContext.getCallerPrincipal().getName();
+			String updateUsername = (String) context.getParameters()[0];
+			if (!username.equals(updateUsername)) {
+				String systemMessage = String.format("Unauthorized access to method \"%s\" from username \"%s\".", methodName, username);			
 				logger.warning(systemMessage);
-
-				String message = String.format("Access denied! You do not have permission to execute this method");
-				logger.warning(message);
-				throw new EJBAccessException(message);
-			}			
-		} 
+				String userMessage = String.format("Access denied! You do not have permission to change password for another user", username);
+				throw new EJBAccessException(userMessage);			
+			}
+		}
 		
 		Object result = context.proceed();
 		logger.info("Return from invoking method: " + methodName);
