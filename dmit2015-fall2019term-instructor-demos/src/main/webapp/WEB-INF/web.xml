@@ -4,27 +4,32 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
-	<servlet>
-		<servlet-name>Faces Servlet</servlet-name>
-		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+  	<context-param>
+		<param-name>javax.faces.FACELETS_BUFFER_SIZE</param-name>
+		<param-value>102400</param-value> <!-- 100 kB, so that the AjaxExceptionHandler has chance to reset the response when an exception occurs during render response phase. -->
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
+		<param-value>true</param-value> <!-- Prevent comments from evaluating any EL expressions and ending up in generated HTML output. -->
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+		<param-value>true</param-value> <!-- Prevent empty string submitted values from polluting the model with empty strings instead of nulls. -->
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value> <!-- Switchable between Development, UnitTest, SystemTest and Production. -->
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.validator.ENABLE_VALIDATE_WHOLE_BEAN</param-name>
+		<param-value>true</param-value> <!-- Explicitly required to activate f:validateWholeBean. -->
+	</context-param>
 
 	<context-param>
 		<param-name>primefaces.THEME</param-name>
 		<param-value>bootstrap</param-value>
 	</context-param>
-	
-	<servlet-mapping>
-		<servlet-name>Faces Servlet</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
-	</servlet-mapping>
 
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.xhtml</welcome-file>
-	</welcome-file-list>
-	
 	<!-- BootsFaces Theme Usage -->
 	<context-param>
 		<param-name>BootsFaces_USETHEME</param-name>
@@ -39,7 +44,23 @@
 		<param-name>net.bootsfaces.blockUI</param-name>
 		<param-value>true</param-value>
 	</context-param>	
-	
+		
+	<servlet>
+		<servlet-name>Faces Servlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Faces Servlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.xhtml</welcome-file>
+	</welcome-file-list>
+		
 	<servlet>
 	    <servlet-name>H2Console</servlet-name>
 	    <servlet-class>org.h2.server.web.WebServlet</servlet-class>

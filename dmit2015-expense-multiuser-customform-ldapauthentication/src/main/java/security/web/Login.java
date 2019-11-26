@@ -45,7 +45,13 @@ public class Login implements Serializable {
 	
 	@Getter
 	private String displayName = "No Assigned Display Name";
-	
+
+	@Getter
+	private String firstName = "No First Name";
+
+	@Getter
+	private String lastName = "No Last Name";
+
 	@Getter
 	private int loginAttempts = 0;
 
@@ -116,7 +122,7 @@ public class Login implements Serializable {
 			Dn queryDn = new Dn(LDAP_QUERY_DN);
 			SearchRequest request = new SearchRequestImpl();
 			request.setScope(SearchScope.SUBTREE);			
-			request.addAttributes("displayName");
+			request.addAttributes("*");
 			request.setBase(queryDn);			
 			request.setFilter(String.format("(cn=%s)", username));
 			
@@ -127,6 +133,9 @@ public class Login implements Serializable {
 				if (response instanceof SearchResultEntry) {
 					Entry resultEntry = ((SearchResultEntry) response).getEntry();
 					displayName = resultEntry.get("displayName").getString();
+					lastName = resultEntry.get("sn").getString();
+					firstName = resultEntry.get("givenName").getString();
+					
 				} else {
 					logger.info("No response from LDAP query");
 				}				
