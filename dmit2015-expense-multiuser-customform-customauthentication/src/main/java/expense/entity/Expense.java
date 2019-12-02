@@ -14,12 +14,16 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.Data;
 import security.entity.LoginUser;
 
 @Data
 @Entity
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Expense implements Serializable {
 	private static final long serialVersionUID = 1L;
 

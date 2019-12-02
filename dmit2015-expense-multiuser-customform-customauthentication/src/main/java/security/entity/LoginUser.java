@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlTransient;
 
 import lombok.Data;
 
@@ -14,6 +17,7 @@ import java.util.List;
 @Data
 @Entity
 @NamedQuery(name="LoginUser.findAll", query="SELECT u FROM LoginUser u")
+@XmlAccessorType(XmlAccessType.FIELD)
 public class LoginUser implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +42,7 @@ public class LoginUser implements Serializable {
 		message="Confirm Password value must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter, and 1 number")
 	private String confirmedPlainTextPassword;
 	
+	@XmlTransient
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(
 		name="LoginUserGroup", 
