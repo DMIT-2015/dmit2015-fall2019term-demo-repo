@@ -1,6 +1,5 @@
 package security.service;
 
-import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -17,7 +16,7 @@ import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import security.entity.*;
 
 @Singleton
-@Interceptors({LoginUserSecurityInterceptor.class})
+//@Interceptors({LoginUserSecurityInterceptor.class})
 public class LoginUserBean {
 
 	@PersistenceContext
@@ -30,7 +29,7 @@ public class LoginUserBean {
 	private LoginGroupBean loginGroupBean;
 	
 	@Lock(LockType.WRITE)
-	public void add(LoginUser newLoginUser, String[] groupNames) throws NoSuchAlgorithmException {
+	public void add(LoginUser newLoginUser, String[] groupNames) {
 
 		String hashedPassword = passwordHash.generate(newLoginUser.getPlainTextPassword().toCharArray());        
         newLoginUser.setPassword(hashedPassword);

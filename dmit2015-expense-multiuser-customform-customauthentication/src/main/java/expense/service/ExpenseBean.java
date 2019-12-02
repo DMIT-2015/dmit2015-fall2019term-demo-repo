@@ -102,6 +102,16 @@ public class ExpenseBean {
 	}
 	
 	@RolesAllowed("**")
+	public List<Expense> findAllByLoginUser() {
+		String username = securityContext.getCallerPrincipal().getName();
+
+		return entityManager.createQuery(
+				"SELECT e FROM Expense e WHERE e.user.username = :usernameValue ORDER BY e.date DESC"
+			, Expense.class)
+			.setParameter("usernameValue", username)	
+			.getResultList();
+	}
+
 	public List<Expense> findAll() {
 		String username = securityContext.getCallerPrincipal().getName();
 
@@ -111,5 +121,5 @@ public class ExpenseBean {
 			.setParameter("usernameValue", username)	
 			.getResultList();
 	}
-	
+
 }

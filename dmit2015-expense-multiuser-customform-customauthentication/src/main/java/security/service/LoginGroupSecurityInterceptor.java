@@ -16,15 +16,15 @@ public class LoginGroupSecurityInterceptor {
 	
 	@Resource
 	private SessionContext sessionContext;
-	
+		
 	@AroundInvoke
 	public Object verifyAccess(InvocationContext context) throws Exception {
 		String methodName = context.getMethod().getName();
 		logger.info("Intercepting invoke to method: " + methodName);
-		
+
 		if (methodName.matches("^delete.*$") || methodName.matches("^update.*$") || methodName.matches("^list.*$") || methodName.matches("^add.*$")) {
-			boolean isInDeveloperRole = sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString());
-			boolean isInAdminRole = sessionContext.isCallerInRole(SecurityRole.ADMIN.toString());
+			boolean isInDeveloperRole = sessionContext.isCallerInRole("DEVELOPER");
+			boolean isInAdminRole = sessionContext.isCallerInRole("ADMIN");
 			if (!isInDeveloperRole && !isInAdminRole) {
 				String username = sessionContext.getCallerPrincipal().getName();
 				String systemMessage = String.format("Unauthorized access to method \"%s\" from username \"%s\".", methodName, username);			

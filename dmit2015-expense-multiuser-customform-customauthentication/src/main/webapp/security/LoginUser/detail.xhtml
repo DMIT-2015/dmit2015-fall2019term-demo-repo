@@ -26,14 +26,18 @@
 			
 			<b:inputSecret id="password" 
 				label="Password"
+				label-small-screen="2" small-screen="10"
 				value="#{loginUserDetail.plainTextPassword}"
 				type="password">
+				<f:validateBean validationGroups="javax.validation.groups.Default,security.entity.PasswordValidationGroup" />
 			</b:inputSecret>
 
 			<b:inputSecret id="confirmedPassword" 
 				label="Confirm Password"
+				label-small-screen="2" small-screen="10"
 				value="#{loginUserDetail.confirmedPlainTextPassword}"
 				type="password">
+				<f:validateBean validationGroups="javax.validation.groups.Default,security.entity.PasswordValidationGroup" />
 			</b:inputSecret>
 
 			<h:outputLabel value="Select group membership:" for="groups" />

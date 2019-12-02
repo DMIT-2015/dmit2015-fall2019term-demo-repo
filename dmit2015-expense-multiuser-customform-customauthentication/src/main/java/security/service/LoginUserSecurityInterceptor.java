@@ -24,6 +24,16 @@ public class LoginUserSecurityInterceptor {
 		String methodName = context.getMethod().getName();
 		logger.info("Intercepting invoke to method: " + methodName);
 		
+//		if (methodName.matches("^add.*$")) {
+//			if (sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString()) || sessionContext.isCallerInRole(SecurityRole.ADMIN.toString())) {
+//				Object[] methodParameters = context.getParameters();
+//				// LoginUser newLoginUser, String[] groupNames
+//				LoginUser newLoginUser = (LoginUser) methodParameters[0];
+//				String[] groupNames = (String[]) methodParameters[1];
+//			}
+//		}
+		
+		// The ADMIN and DEVELOPER roles can manage any user account
 		if (methodName.matches("^delete.*$") || methodName.matches("^list.*$")) {
 			boolean isInDeveloperRole = sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString());
 			boolean isInAdminRole = sessionContext.isCallerInRole(SecurityRole.ADMIN.toString());
@@ -35,8 +45,9 @@ public class LoginUserSecurityInterceptor {
 				throw new EJBAccessException(userMessage);
 			}			
 		} else if (methodName.matches("^update.*$")) {
-			boolean isInUserRole = sessionContext.isCallerInRole(SecurityRole.USER.toString());
-			if (isInUserRole) {
+			boolean isInDeveloperRole = sessionContext.isCallerInRole(SecurityRole.DEVELOPER.toString());
+			boolean isInAdminRole = sessionContext.isCallerInRole(SecurityRole.ADMIN.toString());
+			if (!isInDeveloperRole && !isInAdminRole) {
 				LoginUser existingUser = (LoginUser) context.getParameters()[0];
 				String username = sessionContext.getCallerPrincipal().getName();
 				if (!existingUser.getUsername().equals(username)) {

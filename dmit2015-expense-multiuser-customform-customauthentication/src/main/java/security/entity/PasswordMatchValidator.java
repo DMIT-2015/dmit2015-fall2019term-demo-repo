@@ -8,14 +8,16 @@ import org.apache.commons.lang3.StringUtils;
 public class PasswordMatchValidator implements ConstraintValidator<PasswordMatch, LoginUser> {
 
 	@Override
-	public boolean isValid(LoginUser value, ConstraintValidatorContext context) {
-		boolean valid = false;
-		if ( StringUtils.isBlank(value.getPlainTextPassword()) || StringUtils.isBlank(value.getConfirmedPlainTextPassword()) ) {
-			valid = true;
-		} else {
-			valid = value.getPlainTextPassword().equals(value.getConfirmedPlainTextPassword());
+	public boolean isValid(LoginUser user, ConstraintValidatorContext context) {
+		if (user == null) {
+			return true;
 		}
-		return valid;
+		
+		if ( StringUtils.isBlank(user.getPlainTextPassword()) || StringUtils.isBlank(user.getConfirmedPlainTextPassword()) ) {
+			return false;
+		}
+
+		return  user.getPlainTextPassword().equals(user.getConfirmedPlainTextPassword());
 	}
 
 }

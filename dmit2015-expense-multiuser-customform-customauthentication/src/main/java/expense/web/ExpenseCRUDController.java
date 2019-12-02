@@ -43,7 +43,7 @@ public class ExpenseCRUDController implements Serializable {
 	@PostConstruct
 	void init() {
 		try {
-			expenses = expenseBean.findAll();
+			expenses = expenseBean.findAllByLoginUser();
 		} catch(EJBAccessException e) {
 			Messages.addGlobalInfo(e.getMessage());
 			

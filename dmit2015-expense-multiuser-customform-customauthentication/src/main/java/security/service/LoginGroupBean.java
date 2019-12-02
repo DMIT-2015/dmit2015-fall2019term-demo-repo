@@ -13,16 +13,16 @@ import javax.persistence.PersistenceContext;
 import security.entity.*;
 
 @Singleton
-@Interceptors({LoginGroupSecurityInterceptor.class})
+//@Interceptors({LoginGroupSecurityInterceptor.class})
 public class LoginGroupBean {
 
 	@PersistenceContext
 	private EntityManager entityManager;
 	
 	@Lock(LockType.WRITE)	// only a single thread can access this method 
-	public void add(String groupname) throws Exception {
+	public void add(String groupname) {
 		if (findOneByGroupName(groupname) != null) {
-			throw new Exception("The group name " + groupname + " already exists");
+			throw new RuntimeException("The group name " + groupname + " already exists");
 		}
 		LoginGroup newLoginGroup = new LoginGroup();
 		newLoginGroup.setGroupname(groupname);
