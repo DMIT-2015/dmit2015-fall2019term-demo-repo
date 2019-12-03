@@ -20,6 +20,7 @@
 			
 			<b:inputText id="username" 
 				label="Username"
+				label-small-screen="2" small-screen="10"
 				value="#{loginUserDetail.username}">
 				<b:focus />
 			</b:inputText>
@@ -40,8 +41,10 @@
 				<f:validateBean validationGroups="javax.validation.groups.Default,security.entity.PasswordValidationGroup" />
 			</b:inputSecret>
 
-			<h:outputLabel value="Select group membership:" for="groups" />
-			<b:selectMultiMenu id="groups" value="#{loginUserCRUDController.selectedGroups}">
+			<b:selectMultiMenu id="groups" 
+				label="Group membership"
+				label-small-screen="2" small-screen="10"
+				value="#{loginUserCRUDController.selectedGroups}">
 				<f:selectItems value="#{loginGroupCRUDController.loginGroups}" 
 					var="item"
 					itemValue="#{item.groupname}" 

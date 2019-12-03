@@ -12,6 +12,7 @@ import lombok.Data;
 
 import java.util.List;
 
+@XmlRootElement(name = "LoginGroup")
 @Data
 @Entity
 @NamedQuery(name="LoginGroup.findAll", query="SELECT g FROM LoginGroup g")

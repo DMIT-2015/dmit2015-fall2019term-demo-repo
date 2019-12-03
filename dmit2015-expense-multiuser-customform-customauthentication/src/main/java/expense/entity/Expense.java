@@ -14,16 +14,21 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonFormat.Shape;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import lombok.Data;
 import security.entity.LoginUser;
 
+@XmlRootElement(name = "Expense")
 @Data
 @Entity
-@XmlAccessorType(XmlAccessType.FIELD)
 public class Expense implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -40,6 +45,9 @@ public class Expense implements Serializable {
 	@DecimalMin(value = "1.00", message = "Amount must be equal to greater than ${value}")
 	private BigDecimal amount;
 	
+	@JsonSerialize(using = LocalDateSerializer.class)
+	@JsonDeserialize(using = LocalDateDeserializer.class)
+	@JsonFormat(shape=Shape.STRING, pattern="yyyy-MM-dd")
 	@Column(nullable = false)
 	@NotNull(message = "Date is required")
 	@PastOrPresent(message = "Date cannot be in the future")

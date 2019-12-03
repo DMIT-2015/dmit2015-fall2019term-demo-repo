@@ -14,12 +14,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import security.entity.LoginUser;
 import security.service.LoginUserBean;
 
 @Path("users")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "LoginUser", description = "Java EE Security Login Users")
 public class LoginUserResource {
 
 	@Inject

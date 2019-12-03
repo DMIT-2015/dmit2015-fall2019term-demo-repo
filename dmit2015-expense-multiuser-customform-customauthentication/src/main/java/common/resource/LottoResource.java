@@ -14,10 +14,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Path("lotto")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Tag(name = "lotto", description = "Your #1 source for lucky lottery numbers")
 public class LottoResource {
 	
 	private static final Random rand = new Random();
@@ -40,18 +42,21 @@ public class LottoResource {
 	
 	@GET
 	@Path("lotto649/singlenumber")
+	@Operation(summary = "Get lucky lotto 649 number", description = "Return a single lotto 649 number")
 	public int lotto649SingleNumber() {
 		return getRandomNumber(1, 49);
 	}
 
 	@GET
 	@Path("lottomax/singlenumber")
+	@Operation(summary = "Get lucky lotto MAX number", description = "Return a single lotto MAX number")
 	public int lottoMaxSingleNumber() {
 		return getRandomNumber(1, 50);
 	}
 
 	@GET
 	@Path("lotto649")
+	@Operation(summary = "Get Lotto649 Quick Pick", description = "Return a single lotto 649 quick pick")
 	public List<Integer> lotto649QuickPick() {
 		Set<Integer> quickPickSet = new TreeSet<>();
 		while (quickPickSet.size() < 6) {
@@ -63,6 +68,7 @@ public class LottoResource {
 	
 	@GET
 	@Path("lottomax")
+	@Operation(summary = "Get LottoMax Quick Pick", description = "Return a single lotto Max quick pick")
 	public List<Integer> lottoMaxQuickPick() {
 		Set<Integer> quickPickSet = new TreeSet<>();
 		while (quickPickSet.size() < 7) {
@@ -74,7 +80,7 @@ public class LottoResource {
 	
 	@GET
 	@Path("lotto649/quickpick")
-	@Produces("application/json")
+	@Operation(summary = "Get multiple Lotto649 Quick Picks", description = "Return a collection lotto 649 quick picks")
 	public List<List<Integer>> lotto649QuickPick(@QueryParam("draws") int draws) {
 		List<List<Integer>> quickPicks = new ArrayList<>();
 		for (int drawCount = 1; drawCount <= draws; drawCount += 1) {
@@ -85,7 +91,7 @@ public class LottoResource {
 
 	@GET
 	@Path("lottomax/quickpick")
-	@Produces("application/json")
+	@Operation(summary = "Get multiple LottoMAX Quick Picks", description = "Return a collection lotto MAX quick picks")
 	public List<List<Integer>> lottoMaxQuickPick(@QueryParam("draws") int draws) {
 		List<List<Integer>> quickPicks = new ArrayList<>();
 		for (int drawCount = 1; drawCount <= draws; drawCount += 1) {
@@ -95,6 +101,7 @@ public class LottoResource {
 	}
 
 	@GET
+	@Operation(summary = "Get random number between min and max", description = "Return a random number between min and maxs")
 	public int randomNumber(@QueryParam("min") int minValue, @QueryParam("max") int maxValue) {
 		return getRandomNumber(minValue, maxValue);
 	}

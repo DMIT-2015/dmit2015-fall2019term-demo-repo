@@ -15,10 +15,12 @@ import javax.ws.rs.core.MediaType;
 
 import expense.entity.Expense;
 import expense.service.ExpenseBean;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Path("expenses")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "ExpenseResource", description = "Operations on expenses")
 public class ExpenseResource {
 
 	@Inject

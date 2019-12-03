@@ -14,12 +14,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import security.entity.LoginGroup;
 import security.service.LoginGroupBean;
 
 @Path("groups")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
+@Tag(name = "LoginGroup", description = "Java EE Security Login Groups")
 public class LoginGroupResource {
 
 	@Inject

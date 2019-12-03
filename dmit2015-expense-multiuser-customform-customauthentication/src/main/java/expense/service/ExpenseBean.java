@@ -113,12 +113,9 @@ public class ExpenseBean {
 	}
 
 	public List<Expense> findAll() {
-		String username = securityContext.getCallerPrincipal().getName();
-
 		return entityManager.createQuery(
-				"SELECT e FROM Expense e WHERE e.user.username = :usernameValue ORDER BY e.date DESC"
+				"SELECT e FROM Expense e ORDER BY e.date DESC"
 			, Expense.class)
-			.setParameter("usernameValue", username)	
 			.getResultList();
 	}
 
