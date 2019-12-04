@@ -137,6 +137,13 @@
 					</archive>
 				</configuration>
 			</plugin>
+			<!-- To deploy on production server: open a Terminal to the project directory and type:
+					 mvn clean package wildfly:deploy 
+				 To undeploy
+				 	mvn clean package wildfly:undeploy
+				 To redeploy
+				 	mvn clean package wildfly:deploy	
+			-->
 			<plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>
@@ -144,7 +151,7 @@
                 <configuration>
 			        <hostname>DMIT-DEV1.nait.ca</hostname>
 			        <port>9990</port>
-			        <username>dmit2015yourUsername</username>
+			        <username>dmit2015yourUsername</username> <!-- replace yourUsername with your NAIT username -->
 			        <password>Password2015</password>
 			    </configuration>
             </plugin>
