@@ -1,0 +1,60 @@
+<!DOCTYPE html >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui">	
+
+<h:head>
+	<meta charset="utf-8" />
+   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    
+    <meta name="description" content="${description}"/>
+    <meta name="keywords" content="${keywords}" />
+	<title>${title}</title>  
+			
+	<ui:insert name="externalstyles">
+	</ui:insert>
+	
+	<style>
+		<ui:insert name="internalstyles">	
+		</ui:insert>	
+	</style>
+	
+	<ui:insert name="headscripts">
+	</ui:insert>
+</h:head>
+
+<h:body style="padding: 60px; min-height: 2000px;">
+
+	<ui:insert name="maincontent">
+		NO MAIN CONTENT PROVIDED
+	</ui:insert>
+   
+	<hr />
+	<footer>
+		<p>This
+			<a href="https://javaee.github.io/tutorial/toc.html" target="_blanks">Java EE 8</a>
+			web application is built using
+			<a href="http://www.eclipse.org/downloads/eclipse-packages/" target="_blanks">Eclipse IDE for Java EE Developers</a>, 
+			<a href="https://javaee.github.io/javaserverfaces-spec/" target="_blanks">JSF</a>,         		
+			<a href="http://omnifaces.org/" target="_blanks">OmniFaces</a>,
+			<a href="https://www.bootsfaces.net/" target="_blanks">BootsFaces</a>, 
+			<a href="http://primefaces.org/" target="_blanks">PrimeFaces</a>,
+			and runs on
+			<a href="http://www.wildfly.org/" target="_blanks">WildFly</a>        		
+		</p>
+	</footer>                
+
+<ui:insert name="bodyscripts">
+</ui:insert>
+</h:body>
+
+</html>
