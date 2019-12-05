@@ -1,0 +1,61 @@
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:o="http://omnifaces.org/ui"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"  
+	xmlns:b="http://bootsfaces.net/ui"
+>
+	<p:outputPanel id="detailPanel">
+	
+		<b:panel title="Login User Details" 
+			collapsible="false"
+			> 
+			
+			<b:inputText id="username" 
+				label="Username"
+				label-small-screen="2" small-screen="10"
+				value="#{loginUserDetail.username}">
+				<b:focus />
+			</b:inputText>
+			
+			<b:inputSecret id="password" 
+				label="Password"
+				label-small-screen="2" small-screen="10"
+				value="#{loginUserDetail.plainTextPassword}"
+				type="password">
+				<f:validateBean validationGroups="javax.validation.groups.Default,security.entity.PasswordValidationGroup" />
+			</b:inputSecret>
+
+			<b:inputSecret id="confirmedPassword" 
+				label="Confirm Password"
+				label-small-screen="2" small-screen="10"
+				value="#{loginUserDetail.confirmedPlainTextPassword}"
+				type="password">
+				<f:validateBean validationGroups="javax.validation.groups.Default,security.entity.PasswordValidationGroup" />
+			</b:inputSecret>
+			
+<o:importConstants type="security.service.SecurityRole" />			
+			<b:selectMultiMenu id="groups" 
+				label="Group membership"
+				label-small-screen="2" small-screen="10"
+				value="#{loginUserDetail.groups}">
+				
+					<f:selectItems value="#{SecurityRole}" 
+						var="item" 
+						itemLabel="#{item.toString()}"
+						itemValue="#{item.toString()}"/>
+						
+			</b:selectMultiMenu>
+			
+		</b:panel>
+		
+	</p:outputPanel>
+
+</ui:composition>

@@ -142,7 +142,7 @@
 				 To undeploy
 				 	mvn clean package wildfly:undeploy
 				 To redeploy
-				 	mvn clean package wildfly:deploy	
+				 	mvn clean package wildfly:redeploy	
 			-->
 			<plugin>
                 <groupId>org.wildfly.plugins</groupId>
