@@ -15,7 +15,7 @@
 	<p:outputPanel id="detailPanel">
 		<b:panel title="Expense Details" 
 			collapsible="false"
-			rendered="#{expenseCRUDController.expenseDetail != null ? 'true' : 'false'}"> 
+			rendered="#{(expenseCRUDController.expenseDetail) != null ? true : false}"> 
 			
 			<b:inputText id="Description"
 				label="Description" 

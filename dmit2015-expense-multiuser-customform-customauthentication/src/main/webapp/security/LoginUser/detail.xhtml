@@ -16,7 +16,7 @@
 	
 		<b:panel title="Login User Details" 
 			collapsible="false"
-			rendered="#{loginGroupDetail != null ? 'true' : 'false'}"> 
+			rendered="#{(loginGroupDetail != null) ? true : false}"> 
 			
 			<b:inputText id="username" 
 				label="Username"

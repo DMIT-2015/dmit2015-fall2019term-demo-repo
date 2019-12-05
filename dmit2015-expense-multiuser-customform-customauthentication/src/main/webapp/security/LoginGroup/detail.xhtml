@@ -16,7 +16,7 @@
 	
 		<b:panel title="Login Group Details" 
 			collapsible="false"
-			rendered="#{loginGroupDetail != null ? 'true' : 'false'}"> 
+			rendered="#{(loginGroupDetail != null) ? true : false}"> 
 			
 			<b:inputText id="groupname" 
 				label="Group Name"
