@@ -40,6 +40,11 @@
 					</h:outputText>
 				</b:dataTableColumn>	
 				
+				<b:dataTableColumn 
+					rendered="#{request.isUserInRole('ADMIN')}"
+					label="Username" 
+					value="#{item.user.username}" />
+				
 				<b:dataTableColumn label="Action">					
 					<b:link id="editLink" outcome="edit"  icon-awesome="edit" icon-size="lg">
 						<f:param name="editId" value="#{item.id}" />
