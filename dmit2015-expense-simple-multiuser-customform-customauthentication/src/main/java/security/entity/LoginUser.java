@@ -8,7 +8,7 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 
-@PasswordMatch
+@PasswordMatch(groups = PasswordValidationGroup.class)
 @Data
 @Entity
 @NamedQuery(name="LoginUser.findAll", query="SELECT u FROM LoginUser u")

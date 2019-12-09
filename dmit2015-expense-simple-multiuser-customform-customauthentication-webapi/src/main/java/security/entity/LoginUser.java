@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import lombok.Data;
 
 @XmlRootElement	// for automatic mapping from JAXB annotated class to XML and JSON 
-@PasswordMatch
+@PasswordMatch(groups = PasswordValidationGroup.class)
 @Data
 @Entity
 @NamedQuery(name="LoginUser.findAll", query="SELECT u FROM LoginUser u")

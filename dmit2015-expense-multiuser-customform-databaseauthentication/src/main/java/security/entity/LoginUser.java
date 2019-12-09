@@ -10,7 +10,7 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-@PasswordMatch
+@PasswordMatch(groups = PasswordValidationGroup.class)
 @Data
 @Entity
 @NamedQuery(name="LoginUser.findAll", query="SELECT u FROM LoginUser u")
