@@ -57,7 +57,8 @@
 				action="#{loginUserCRUDController.cancel()}">
 			</b:commandButton>	
 
-			<f:validateWholeBean value="#{loginUserDetail}" validationGroups="security.entity.PasswordValidationGroup"  />	
+			<f:validateWholeBean value="#{loginUserDetail}" 
+				validationGroups="security.entity.PasswordValidationGroup"  />	
 			
 		</b:form>
 		

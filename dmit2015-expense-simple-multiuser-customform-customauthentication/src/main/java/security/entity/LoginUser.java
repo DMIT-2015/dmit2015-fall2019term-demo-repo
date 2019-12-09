@@ -28,13 +28,17 @@ public class LoginUser implements Serializable {
 
 	@Transient
 	@Pattern(regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
-		message="Password value must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter, and 1 number")
-	private String plainTextPassword;
+		message="Password value must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter, and 1 number",
+		groups = {PasswordValidationGroup.class})
+	private String plainTextPassword = "Password2015";
 
 	@Transient
-	@Pattern(regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
-		message="Confirm Password value must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter, and 1 number")
-	private String confirmedPlainTextPassword;
+	@Pattern(
+		regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$",
+		message="Confirm Password value must contain at least 8 characters with at least 1 uppercase letter, 1 lowercase letter, and 1 number",
+		groups = {PasswordValidationGroup.class}
+	)
+	private String confirmedPlainTextPassword = "Password2015";
 	
 	@NotBlank(message="A user must be assigned to at least one group")
 	private String groups;

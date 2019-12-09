@@ -31,7 +31,8 @@
 				label-small-screen="2" small-screen="10"
 				value="#{loginUserDetail.plainTextPassword}"
 				type="password">
-				<f:validateBean validationGroups="javax.validation.groups.Default,security.entity.PasswordValidationGroup" />
+				<f:validateBean 
+validationGroups="javax.validation.groups.Default,security.entity.PasswordValidationGroup" />
 			</b:inputSecret>
 
 			<b:inputSecret id="confirmedPassword" 

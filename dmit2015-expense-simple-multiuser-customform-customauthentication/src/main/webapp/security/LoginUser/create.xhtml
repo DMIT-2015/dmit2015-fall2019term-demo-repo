@@ -33,7 +33,8 @@
 				action="#{loginUserCRUDController.create()}"
 				update=":messages detailPanel" />
 				
-			<f:validateWholeBean value="#{loginUserDetail}"  validationGroups="security.entity.PasswordValidationGroup" />	
+			<f:validateWholeBean value="#{loginUserDetail}"  
+				validationGroups="security.entity.PasswordValidationGroup" />	
 		</b:form>
 		
 	</ui:define>

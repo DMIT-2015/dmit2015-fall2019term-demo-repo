@@ -118,6 +118,7 @@ public class ExpenseBean {
 		return null;
 	}
 
+	@RolesAllowed({"ADMIN","DEVELOPER"})
 	public List<Expense> findAll() {
 		return entityManager.createQuery(
 				"SELECT e FROM Expense e ORDER BY e.date DESC"
