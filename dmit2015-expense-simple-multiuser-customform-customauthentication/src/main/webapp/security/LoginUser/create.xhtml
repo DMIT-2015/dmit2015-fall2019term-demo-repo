@@ -27,7 +27,8 @@
 		
 			<ui:include src="/security/LoginUser/detail.xhtml" />
 			
-			<b:commandButton value="Save"
+			<b:commandButton id="save"
+				value="Save"
 				look="primary"
 				iconAwesome="save"
 				action="#{loginUserCRUDController.create()}"

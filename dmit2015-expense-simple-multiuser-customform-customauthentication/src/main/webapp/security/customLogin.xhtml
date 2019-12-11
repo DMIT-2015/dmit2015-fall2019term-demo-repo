@@ -33,7 +33,7 @@
 		
 			<b:messages id="messages" />
 			
-			<b:form name="loginForm">
+			<b:form id="loginForm">
 	            <h2 class="form-signin-heading">Please sign in</h2>
 	            <b:inputText id="username" label="User Name" placeholder="username" 
 	            	value="#{login.username}">
@@ -49,7 +49,7 @@
 	                </f:facet>
 	            </b:inputSecret>
 	            
-	            <b:commandButton value="Login" action="#{login.submit()}"  icon="log-in" />
+	            <b:commandButton id="login" value="Login" action="#{login.submit()}"  icon="log-in" />
 
 	        </b:form>
         

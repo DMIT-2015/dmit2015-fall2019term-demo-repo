@@ -31,14 +31,16 @@
 		
 			<ui:include src="/security/LoginUser/detail.xhtml" />
 			
-			<b:commandButton value="Save" 
+			<b:commandButton id="save"
+				value="Save" 
 				icon-awesome="save"
 				look="info"
 				update=":messages detailPanel"
 				action="#{loginUserCRUDController.update()}">
 			</b:commandButton>
 				
-			<b:commandButton value="Delete" 
+			<b:commandButton id="delete"
+				value="Delete" 
 				look="danger"
 				icon-awesome="trash"
 				onclick="return confirm('Are you sure you want to delete this item?')"
@@ -48,7 +50,8 @@
 				action="#{loginUserCRUDController.delete()}">
 			</b:commandButton>
 							
-			<b:commandButton value="Cancel" 
+			<b:commandButton id="cancel" 
+				value="Cancel" 
 				look="default"
 				icon-awesome="cancel"
 				ajax="false"

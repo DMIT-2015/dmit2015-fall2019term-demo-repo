@@ -31,14 +31,16 @@
 		
 			<ui:include src="/expense/detail.xhtml" />
 			
-			<b:commandButton value="Submit Update" 
+			<b:commandButton id="save"
+				value="Submit Update" 
 				icon-awesome="save"
 				look="info"
 				update=":messages detailPanel"
 				action="#{expenseCRUDController.update()}">
 			</b:commandButton>
 				
-			<b:commandButton value="Delete" 
+			<b:commandButton id="delete"
+				value="Delete" 
 				look="danger"
 				icon-awesome="trash"
 				onclick="return confirm('Are you sure you want to delete this item?')"
@@ -48,7 +50,8 @@
 				action="#{expenseCRUDController.delete()}">
 			</b:commandButton>
 						
-			<b:commandButton value="Cancel" 
+			<b:commandButton id="cancel"
+				value="Cancel" 
 				look="default"
 				icon-awesome="cancel"
 				ajax="false"

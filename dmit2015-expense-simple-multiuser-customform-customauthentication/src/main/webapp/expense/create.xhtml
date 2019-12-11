@@ -27,7 +27,8 @@
 		
 			<ui:include src="/expense/detail.xhtml" />
 			
-			<b:commandButton value="Submit New"
+			<b:commandButton id="save"
+				value="Submit New"
 				look="primary"
 				iconAwesome="save"
 				action="#{expenseCRUDController.create()}"

@@ -41,7 +41,7 @@
 				</b:dataTableColumn>	
 				
 				<b:dataTableColumn 
-					rendered="#{securityController.isInAnyRole(request,{'ADMIN','DEVELOPER'})}"
+					rendered="#{request.isUserInRole('ADMIN') or request.isUserInRole('DEVELOPER')}"
 					label="Username" 
 					value="#{item.user.username}" />
 				
