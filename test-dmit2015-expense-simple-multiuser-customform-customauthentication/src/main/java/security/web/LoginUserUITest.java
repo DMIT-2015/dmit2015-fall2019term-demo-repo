@@ -18,6 +18,11 @@ public class LoginUserUITest {
 	
 	@BeforeAll
 	public static void setUpClass() {
+		// Download geckodriver-v0.26.0-linux64.tar.gz from https://github.com/mozilla/geckodriver/releases
+		// and extract to "~/jdk/web-drivers/" folder.
+
+		// For more web browsers visit https://selenium.dev/downloads/
+		
 		System.setProperty("webdriver.gecko.driver","/home/user2015/jdk/web-drivers/geckodriver");
 		_driver = new FirefoxDriver();		
 
