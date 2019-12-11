@@ -18,7 +18,7 @@ public class LoginUserUITest {
 	
 	@BeforeAll
 	public static void setUpClass() {
-		System.setProperty("webdriver.gecko.driver","/home/samwu/jdk/web-drivers/geckodriver");
+		System.setProperty("webdriver.gecko.driver","/home/user2015/jdk/web-drivers/geckodriver");
 		_driver = new FirefoxDriver();		
 
 		_driver.get("https://localhost:8443/dmit2015-expense-simple-multiuser-customform-customauthentication/security/customLogin.xhtml");

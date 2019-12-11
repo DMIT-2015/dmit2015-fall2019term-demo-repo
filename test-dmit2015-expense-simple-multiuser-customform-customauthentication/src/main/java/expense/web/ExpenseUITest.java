@@ -21,7 +21,7 @@ public class ExpenseUITest {
 	
 	@BeforeAll
 	public static void setUpClass() {
-		System.setProperty("webdriver.gecko.driver","/home/samwu/jdk/web-drivers/geckodriver");
+		System.setProperty("webdriver.gecko.driver","/home/user2015/jdk/web-drivers/geckodriver");
 		_driver = new FirefoxDriver();		
 		_driver.manage().window().maximize();
 
