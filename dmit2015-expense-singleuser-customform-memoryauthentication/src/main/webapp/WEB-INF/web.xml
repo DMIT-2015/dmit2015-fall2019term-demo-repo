@@ -4,6 +4,13 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd">
 
+	<!-- To use security role annotations (@RolesAllowed, @PermitAll, @DenyAll) with JAX-RS in Wildfly, 
+	you MUST set to "true" the context-param "resteasy.role.based.security" -->
+	<context-param>
+        <param-name>resteasy.role.based.security</param-name>
+        <param-value>true</param-value> <!-- Explicitly required to use @RolesAllowed, @PermitAll with JAX-RS -->
+    </context-param>
+    
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

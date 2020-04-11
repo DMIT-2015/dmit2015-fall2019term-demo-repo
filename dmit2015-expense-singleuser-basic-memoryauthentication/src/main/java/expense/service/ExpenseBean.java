@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javax.annotation.Resource;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.ejb.Timeout;
 import javax.ejb.Timer;
@@ -19,7 +21,7 @@ import javax.persistence.PersistenceContext;
 import expense.entity.Expense;
 
 @Stateless
-@Interceptors({ExpenseSecurityInterceptor.class})
+//@Interceptors({ExpenseSecurityInterceptor.class})
 public class ExpenseBean {
 	
 	@Inject
@@ -46,6 +48,8 @@ public class ExpenseBean {
 	@PersistenceContext
 	private EntityManager entityManager;
 	
+//	@RolesAllowed({"USER","ADMIN"})
+	@PermitAll
 	public void add(Expense newExpense) {
 		entityManager.persist(newExpense);
 		
@@ -55,11 +59,14 @@ public class ExpenseBean {
 		timerService.createSingleActionTimer(30000, timerConfig);
 	}
 	
+	@RolesAllowed({"USER","ADMIN"})
 	public void update(Expense existingExpense) {
 		entityManager.merge(existingExpense);
 		entityManager.flush();	
 	}
 	
+//	@RolesAllowed({"ADMIN"})
+	@PermitAll
 	public void remove(Expense existingExpense) {
 		if (!entityManager.contains(existingExpense)) {
 			existingExpense = entityManager.merge(existingExpense);			
@@ -84,10 +91,12 @@ public class ExpenseBean {
 		remove(existingCategoy);
 	}
 	
+	@PermitAll
 	public Expense findById(Long id) {
 		return entityManager.find(Expense.class, id);
 	}
 	
+	@PermitAll
 	public List<Expense> findAll() {
 		return entityManager.createQuery(
 				"SELECT e FROM Expense e ORDER BY e.date DESC"

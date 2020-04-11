@@ -9,11 +9,19 @@ import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import org.glassfish.soteria.identitystores.annotation.Credentials;
 import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefinition;
 
+//@FormAuthenticationMechanismDefinition(		
+//	loginToContinue = @LoginToContinue(
+//			loginPage="/security/login.xhtml",
+//			errorPage="/security/login.xhtml?error=true",
+//			useForwardToLogin = false
+//	)
+//)
+
 @FormAuthenticationMechanismDefinition(		
 	loginToContinue = @LoginToContinue(
-			loginPage="/security/login.xhtml",
-			errorPage="/security/login.xhtml?error=true",
-			useForwardToLogin = false
+		loginPage="/login/login.html",
+		errorPage="/login/login.html?error=true",
+		useForwardToLogin = false
 	)
 )
 

@@ -11,9 +11,17 @@ import javax.security.enterprise.authentication.mechanism.http.LoginToContinue;
 import org.glassfish.soteria.identitystores.annotation.Credentials;
 import org.glassfish.soteria.identitystores.annotation.EmbeddedIdentityStoreDefinition;
 
+//@CustomFormAuthenticationMechanismDefinition(
+//	loginToContinue = @LoginToContinue(
+//		loginPage="/security/customLogin.xhtml", 
+//		useForwardToLogin = false,
+//		errorPage=""
+//	)
+//)
+
 @CustomFormAuthenticationMechanismDefinition(
 	loginToContinue = @LoginToContinue(
-		loginPage="/security/customLogin.xhtml", 
+		loginPage="/login/login.html", 
 		useForwardToLogin = false,
 		errorPage=""
 	)
