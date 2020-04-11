@@ -86,6 +86,7 @@
 		<web-resource-collection>
 			<web-resource-name>Restricted User Resources</web-resource-name>
 			<url-pattern>/expense/create.xhtml</url-pattern>
+			<url-pattern>/expense/create.html</url-pattern>
 			<url-pattern>/expense/detail.xhtml</url-pattern>
 			<url-pattern>/expense/edit.xhtml</url-pattern>
 			<url-pattern>/h2-console/*</url-pattern>

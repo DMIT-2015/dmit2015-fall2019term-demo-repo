@@ -80,19 +80,22 @@ body {
 <div id="app" class="container">
            
 
-	<form class="form-signin" action="/LoginServlet" method="POST" >
+	<form ref="form" v-on:submit.prevent
+		class="form-signin" action="/LoginServlet" method="POST" >
 		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
 	    <div v-if="message" v-html="message" id="message" class="alert alert-danger" role="alert" >
 		</div>
 
 		<label for="j_username" class="sr-only">Username</label>
-		<input type="text" id="j_username" name="j_username" class="form-control" placeholder="Username" required autofocus>
+		<input v-model="form.username" 
+			type="text" id="j_username" name="j_username" class="form-control" placeholder="Username" required autofocus>
 		<label for="j_password" class="sr-only">Password</label>
-		<input type="password" id="j_password" name="j_password" class="form-control" placeholder="Password" required>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		<input v-model="form.password" 
+			type="password" id="j_password" name="j_password" class="form-control" placeholder="Password" required>
+		<button @click="submit"
+			class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
 	</form>
   
-		   
 </div>
 
 
@@ -106,7 +109,13 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <!-- production version, optimized for size and speed -->
 <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+
+<!-- Vuex Statement Management (https://vuex.vuejs.org) -->
+<script src="https://unpkg.com/vuex"></script>
+
+<!-- Vue Router (https://router.vuejs.org/) -->
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
 
 <script type="text/javascript">
 
@@ -119,6 +128,10 @@ var app = new Vue({
     data: {
         message:	'',
         //messages:	[],
+        form: {
+			username: '',
+			password: '',
+        },
        
     },
 
@@ -141,50 +154,55 @@ var app = new Vue({
      methods: {
     	 
 		submit: function() {
-			//const apiURL = 'relative or absolute URL to webapi';
-			
-			// Construct the data to pass to the webapi into the required content type
+			const apiURL = '/LoginServlet';	
+
 			// 1) To send data as "application/x-www-form-urlencoded" content type you need to pass a URLSearchParmas object or a URL-encoded string
 			/*
-			const data = new URLSearchParams();
+			const requestData = new URLSearchParams();
 			for (const pair of new FormData(this.$refs.form)) {
-				data.append(pair[0], pair[1]);
+				requestData.append(pair[0], pair[1]);
 			}
 			*/
-			/*
 			const formData = new FormData();
-			formData.append('name', encodeURIComponent(this.form.name));
-			formData.append('age', encodeURIComponent(this.form.age));
-			// To send data as "application/x-www-form-urlencoded" you need to pass a URLSearchParmas object or a URL-encoded string
-			const data = new URLSearchParams(formData);			
-			*/
-			// 2) To send data as "multipart/form-data" content type you need to pass a FormData object 
-			// 3) To send data as "application/json" content you need to manually build the JSON value
-			// const data = '{"name1:":"stringValue", "name2": numberValue}';
-			// const data = [{"name": "john", age: 18}, {"name:" "jerry", age: 20}];
+			formData.append('j_username', encodeURIComponent(this.form.username));
+			formData.append('j_password', encodeURIComponent(this.form.password));
+			const requestData = new URLSearchParams(formData);	
+			
+			const requestOptions = {
+				method: 'POST',
+				body: requestData,
+			}
+			
+			fetch(apiURL, requestOptions)
+			.then(response => {
+				if (response.ok) {
+					return response.json()
+					.then(data => {
+						console.log(data);
 
-			/*
-			fetch(apiURL, {
-				method: 'POST',	// method can be one of the following: POST, GET, PUT, DELETE
-				body: data
-			})
-			.then(handleResponse)		// for handling a BadRequest response
-			.then(responseJson => {
-				console.log(responseJson);
-
-				// do something with the response data
-				
-			})
-			.catch(error => {
-				// for display error messages from a BadRequest response
-				if (error.status == 400) {
-					for (let index = 0; index < Object.keys(error).length - 2; index++) {
-						console.log(error[index]);		
-						this.errorMessages.push( Object.values(error[index])[0] );
-					}
+						// store the sessionId and Authorization to local storage
+						localStorage.setItem("sessionId", data.sessionId);
+						localStorage.setItem("Authorization", data.Authorization);
+						window.location.replace("/expense/create.html");
+					})
+					.catch(error => {
+						window.location.replace("/expense/create.html");
+					});
+				} else {
+					console.log(response);
+					return response.json().then(data => {
+						throw Error(data.message);
+					})
+					.catch(error => {
+						console.log(error);
+						this.message = error;		
+					});
 				}
+			})	
+			.catch(error => {
+				console.log(error);
+				this.message = error;		
 			});	
-			*/
 			
 		},
 
@@ -195,22 +213,6 @@ var app = new Vue({
      },
 })
 
-
-// common function to handle a BadRequest response from a Fetch API request
-function handleResponse(response) {
-	return response.json()
-		.then(json => {
-			if (response.ok) {
-				return json
-			} else {
-				let error = Object.assign({}, json, {
-					status: response.status,
-					statusText: response.statusText
-				})
-				return Promise.reject(error)
-			}
-	})
-}
 </script>
 
     </body>

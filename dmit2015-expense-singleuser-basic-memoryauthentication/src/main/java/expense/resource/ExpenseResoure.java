@@ -10,8 +10,6 @@ import java.util.Set;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
-import javax.inject.Inject;
-import javax.json.JsonObject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -36,7 +34,6 @@ import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import expense.entity.Expense;
-import expense.service.ExpenseBean;
 
 /**
  *  URI						Http Method		Request Body						Description
