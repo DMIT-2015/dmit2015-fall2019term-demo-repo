@@ -3,6 +3,7 @@ package expense.resource;
 import java.math.BigDecimal;
 import java.net.URI;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -116,6 +117,7 @@ public class ExpenseResoure {
 	public Response add(@Valid Expense newExpense, @Context UriInfo uriInfo) {
 				
 		try {
+			newExpense.setDateCreated(LocalDateTime.now());
 			entityManager.persist(newExpense);
 			URI location = uriInfo.getAbsolutePathBuilder()
 				.path(newExpense.getId().toString())

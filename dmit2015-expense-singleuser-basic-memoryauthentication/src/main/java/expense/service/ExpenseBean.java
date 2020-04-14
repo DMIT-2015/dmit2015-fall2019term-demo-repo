@@ -1,6 +1,7 @@
 package expense.service;
 
 import java.io.InputStream;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
@@ -51,6 +52,7 @@ public class ExpenseBean {
 //	@RolesAllowed({"USER","ADMIN"})
 	@PermitAll
 	public void add(Expense newExpense) {
+		newExpense.setDateCreated(LocalDateTime.now());
 		entityManager.persist(newExpense);
 		
 		// send a notification in 30000ms (30 seconds)
